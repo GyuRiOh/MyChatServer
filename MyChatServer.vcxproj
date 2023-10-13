@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{f8216f67-be63-470e-a3ba-7dd65cae2610}</ProjectGuid>
+    <RootNamespace>MyChatServer</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IncludePath>$(ProjectDir);C:\Program Files\MySQL\MySQL Server 8.0\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Program Files\MySQL\MySQL Server 8.0\lib;C:\Program Files\MySQL\MySQL Server 8.0\bin;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <Optimization>Disabled</Optimization>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="ChatServer\Single\ChatServer.cpp" />
+    <ClCompile Include="MyChatServer.cpp" />
+    <ClCompile Include="NetRoot\Common\Crash.cpp" />
+    <ClCompile Include="NetRoot\Common\Parser.cpp" />
+    <ClCompile Include="NetRoot\Common\PDHMonitor.cpp" />
+    <ClCompile Include="NetRoot\Common\Profiler.cpp" />
+    <ClCompile Include="NetRoot\Common\RingBuffer.cpp" />
+    <ClCompile Include="NetRoot\Common\SizedMemoryPool.cpp" />
+    <ClCompile Include="NetRoot\Common\SystemLogger.cpp" />
+    <ClCompile Include="NetRoot\LanClient\LanClient.cpp" />
+    <ClCompile Include="NetRoot\LanServer\LanLargePacket.cpp" />
+    <ClCompile Include="NetRoot\LanServer\LanPacket.cpp" />
+    <ClCompile Include="NetRoot\LanServer\LanPacketSet.cpp" />
+    <ClCompile Include="NetRoot\LanServer\LanPipe.cpp" />
+    <ClCompile Include="NetRoot\LanServer\LanServer.cpp" />
+    <ClCompile Include="NetRoot\LanServer\LanSession.cpp" />
+    <ClCompile Include="NetRoot\LanServer\LanSessionArray.cpp" />
+    <ClCompile Include="NetRoot\LanServer\LanSessionID.cpp" />
+    <ClCompile Include="NetRoot\NetClient\NetClient.cpp" />
+    <ClCompile Include="NetRoot\NetServer\NetLargePacket.cpp" />
+    <ClCompile Include="NetRoot\NetServer\NetPacket.cpp" />
+    <ClCompile Include="NetRoot\NetServer\NetPacketSet.cpp" />
+    <ClCompile Include="NetRoot\NetServer\NetPipe.cpp" />
+    <ClCompile Include="NetRoot\NetServer\NetServer.cpp" />
+    <ClCompile Include="NetRoot\NetServer\NetSession.cpp" />
+    <ClCompile Include="NetRoot\NetServer\NetSessionArray.cpp" />
+    <ClCompile Include="NetRoot\NetServer\NetSessionID.cpp" />
+    <ClCompile Include="Player\Player.cpp" />
+    <ClCompile Include="Player\PlayerWithLock.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ChatServer\Single\ChatClient.h" />
+    <ClInclude Include="ChatServer\Single\ChatServer.h" />
+    <ClInclude Include="ChatServer\Single\ChatServer_CS_Stub.h" />
+    <ClInclude Include="ChatServer\Single\ChatServer_SC_Proxy.h" />
+    <ClInclude Include="CommonProtocol.h" />
+    <ClInclude Include="MonitorProtocol.h" />
+    <ClInclude Include="NetRoot\Common\ChunkLockFree.h" />
+    <ClInclude Include="NetRoot\Common\cpp_redis\builders\array_builder.hpp" />
+    <ClInclude Include="NetRoot\Common\cpp_redis\builders\builders_factory.hpp" />
+    <ClInclude Include="NetRoot\Common\cpp_redis\builders\builder_iface.hpp" />
+    <ClInclude Include="NetRoot\Common\cpp_redis\builders\bulk_string_builder.hpp" />
+    <ClInclude Include="NetRoot\Common\cpp_redis\builders\error_builder.hpp" />
+    <ClInclude Include="NetRoot\Common\cpp_redis\builders\integer_builder.hpp" />
+    <ClInclude Include="NetRoot\Common\cpp_redis\builders\reply_builder.hpp" />
+    <ClInclude Include="NetRoot\Common\cpp_redis\builders\simple_string_builder.hpp" />
+    <ClInclude Include="NetRoot\Common\cpp_redis\core\client.hpp" />
+    <ClInclude Include="NetRoot\Common\cpp_redis\core\consumer.hpp" />
+    <ClInclude Include="NetRoot\Common\cpp_redis\core\reply.hpp" />
+    <ClInclude Include="NetRoot\Common\cpp_redis\core\sentinel.hpp" />
+    <ClInclude Include="NetRoot\Common\cpp_redis\core\subscriber.hpp" />
+    <ClInclude Include="NetRoot\Common\cpp_redis\core\types.hpp" />
+    <ClInclude Include="NetRoot\Common\cpp_redis\helpers\generate_rand.hpp" />
+    <ClInclude Include="NetRoot\Common\cpp_redis\helpers\variadic_template.hpp" />
+    <ClInclude Include="NetRoot\Common\cpp_redis\impl\client.ipp" />
+    <ClInclude Include="NetRoot\Common\cpp_redis\impl\types.hpp" />
+    <ClInclude Include="NetRoot\Common\cpp_redis\misc\convert.hpp" />
+    <ClInclude Include="NetRoot\Common\cpp_redis\misc\deprecated.hpp" />
+    <ClInclude Include="NetRoot\Common\cpp_redis\misc\dispatch_queue.hpp" />
+    <ClInclude Include="NetRoot\Common\cpp_redis\misc\error.hpp" />
+    <ClInclude Include="NetRoot\Common\cpp_redis\misc\logger.hpp" />
+    <ClInclude Include="NetRoot\Common\cpp_redis\misc\macro.hpp" />
+    <ClInclude Include="NetRoot\Common\cpp_redis\misc\optional.hpp" />
+    <ClInclude Include="NetRoot\Common\cpp_redis\network\redis_connection.hpp" />
+    <ClInclude Include="NetRoot\Common\cpp_redis\network\tcp_client.hpp" />
+    <ClInclude Include="NetRoot\Common\cpp_redis\network\tcp_client_iface.hpp" />
+    <ClInclude Include="NetRoot\Common\Crash.h" />
+    <ClInclude Include="NetRoot\Common\JobQueue.h" />
+    <ClInclude Include="NetRoot\Common\Lock.h" />
+    <ClInclude Include="NetRoot\Common\LockFreeEnqQueue.h" />
+    <ClInclude Include="NetRoot\Common\LockFreeQueue.h" />
+    <ClInclude Include="NetRoot\Common\LockFreeStack.h" />
+    <ClInclude Include="NetRoot\Common\MemTLS.h" />
+    <ClInclude Include="NetRoot\Common\MyList.h" />
+    <ClInclude Include="NetRoot\Common\MyMultimap.h" />
+    <ClInclude Include="NetRoot\Common\MyRedBlackTree.h" />
+    <ClInclude Include="NetRoot\Common\Parser.h" />
+    <ClInclude Include="NetRoot\Common\PDHMonitor.h" />
+    <ClInclude Include="NetRoot\Common\Profiler.h" />
+    <ClInclude Include="NetRoot\Common\Queue.h" />
+    <ClInclude Include="NetRoot\Common\QueueWithLock.h" />
+    <ClInclude Include="NetRoot\Common\RingBuffer.h" />
+    <ClInclude Include="NetRoot\Common\RPCBuffer.h" />
+    <ClInclude Include="NetRoot\Common\Singleton.h" />
+    <ClInclude Include="NetRoot\Common\SizedMemoryPool.h" />
+    <ClInclude Include="NetRoot\Common\SizedMemTLS.h" />
+    <ClInclude Include="NetRoot\Common\SwapQueue.h" />
+    <ClInclude Include="NetRoot\Common\SystemLogger.h" />
+    <ClInclude Include="NetRoot\Common\tacopie\network\io_service.hpp" />
+    <ClInclude Include="NetRoot\Common\tacopie\network\self_pipe.hpp" />
+    <ClInclude Include="NetRoot\Common\tacopie\network\tcp_client.hpp" />
+    <ClInclude Include="NetRoot\Common\tacopie\network\tcp_server.hpp" />
+    <ClInclude Include="NetRoot\Common\tacopie\network\tcp_socket.hpp" />
+    <ClInclude Include="NetRoot\Common\tacopie\utils\error.hpp" />
+    <ClInclude Include="NetRoot\Common\tacopie\utils\logger.hpp" />
+    <ClInclude Include="NetRoot\Common\tacopie\utils\thread_pool.hpp" />
+    <ClInclude Include="NetRoot\Common\tacopie\utils\typedefs.hpp" />
+    <ClInclude Include="NetRoot\LanClient\LanClient.h" />
+    <ClInclude Include="NetRoot\LanServer\LanDummyPacket.h" />
+    <ClInclude Include="NetRoot\LanServer\LanEnums.h" />
+    <ClInclude Include="NetRoot\LanServer\LanLargePacket.h" />
+    <ClInclude Include="NetRoot\LanServer\LanPacket.h" />
+    <ClInclude Include="NetRoot\LanServer\LanPacketSet.h" />
+    <ClInclude Include="NetRoot\LanServer\LanPipe.h" />
+    <ClInclude Include="NetRoot\LanServer\LanServer.h" />
+    <ClInclude Include="NetRoot\LanServer\LanSession.h" />
+    <ClInclude Include="NetRoot\LanServer\LanSessionArray.h" />
+    <ClInclude Include="NetRoot\LanServer\LanSessionID.h" />
+    <ClInclude Include="NetRoot\LanServer\LanUser.h" />
+    <ClInclude Include="NetRoot\NetClient\NetClient.h" />
+    <ClInclude Include="NetRoot\NetServer\NetDummyPacket.h" />
+    <ClInclude Include="NetRoot\NetServer\NetEnums.h" />
+    <ClInclude Include="NetRoot\NetServer\NetLargePacket.h" />
+    <ClInclude Include="NetRoot\NetServer\NetPacket.h" />
+    <ClInclude Include="NetRoot\NetServer\NetPacketSet.h" />
+    <ClInclude Include="NetRoot\NetServer\NetPipe.h" />
+    <ClInclude Include="NetRoot\NetServer\NetServer.h" />
+    <ClInclude Include="NetRoot\NetServer\NetSession.h" />
+    <ClInclude Include="NetRoot\NetServer\NetSessionArray.h" />
+    <ClInclude Include="NetRoot\NetServer\NetSessionID.h" />
+    <ClInclude Include="NetRoot\NetServer\NetStub.h" />
+    <ClInclude Include="NetRoot\NetServer\NetUser.h" />
+    <ClInclude Include="NetRoot\NetServer\PipeManager.h" />
+    <ClInclude Include="NetRoot\RPC\ChatDummyClient_CS_Proxy.h" />
+    <ClInclude Include="NetRoot\RPC\ChatDummyClient_SC_Stub.h" />
+    <ClInclude Include="NetRoot\RPC\ChatServer_CS_Stub.h" />
+    <ClInclude Include="NetRoot\RPC\ChatServer_SC_Proxy.h" />
+    <ClInclude Include="NetRoot\RPC\LanRPCMaker.h" />
+    <ClInclude Include="NetRoot\RPC\NetRPCMaker.h" />
+    <ClInclude Include="NetRoot\RPC\새 폴더\ChatDummyClient_CS_Proxy.h" />
+    <ClInclude Include="NetRoot\RPC\새 폴더\ChatDummyClient_SC_Stub.h" />
+    <ClInclude Include="NetRoot\RPC\새 폴더\ChatServer_CS_Stub.h" />
+    <ClInclude Include="NetRoot\RPC\새 폴더\ChatServer_SC_Proxy.h" />
+    <ClInclude Include="NetRoot\RPC\새 폴더\LanLoginClient_CS_Proxy.h" />
+    <ClInclude Include="NetRoot\RPC\새 폴더\LanLoginClient_SC_Stub.h" />
+    <ClInclude Include="NetRoot\RPC\새 폴더\LanLoginServer_CS_Stub.h" />
+    <ClInclude Include="NetRoot\RPC\새 폴더\LanLoginServer_SC_Proxy.h" />
+    <ClInclude Include="NetRoot\RPC\새 폴더\Net\ChatDummyClient_CS_Proxy.h" />
+    <ClInclude Include="NetRoot\RPC\새 폴더\Net\ChatDummyClient_SC_Stub.h" />
+    <ClInclude Include="NetRoot\RPC\새 폴더\Net\ChatServer_CS_Stub.h" />
+    <ClInclude Include="NetRoot\RPC\새 폴더\Net\ChatServer_SC_Proxy.h" />
+    <ClInclude Include="PacketStruct.h" />
+    <ClInclude Include="Player\Player.h" />
+    <ClInclude Include="Player\PlayerMap.h" />
+    <ClInclude Include="Player\PlayerMapWithLock.h" />
+    <ClInclude Include="Player\PlayerMap_LoadBalanced.h" />
+    <ClInclude Include="Player\PlayerWithLock.h" />
+    <ClInclude Include="RedisJob.h" />
+    <ClInclude Include="Sector\Sector.h" />
+    <ClInclude Include="Sector\SectorMap.h" />
+    <ClInclude Include="Sector\SectorMapWithLock.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="ChatServer\Single\cpp_redis.lib" />
+    <Library Include="ChatServer\Single\tacopie.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ChatServer\Single\cpp_redis.pdb" />
+    <None Include="ChatServer\Single\libmysql.dll" />
+    <None Include="ChatServer\Single\tacopie.pdb" />
+    <None Include="Config.ini" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

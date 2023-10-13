@@ -1,0 +1,514 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="소스 파일">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="헤더 파일">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="ChatServer">
+      <UniqueIdentifier>{dc15f456-5f34-41ad-b659-6fd5ee49eab7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Player">
+      <UniqueIdentifier>{8bed039d-e414-4e2f-affa-1d00e3589ea9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sector">
+      <UniqueIdentifier>{cba0b66f-c30f-4317-9280-cf2ce671aded}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="NetRoot">
+      <UniqueIdentifier>{5bd503b3-e766-4230-a2ca-5dcbaa5844ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ChatServer\Multi">
+      <UniqueIdentifier>{aa058470-9a56-4c35-8ec1-adf3f02356f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ChatServer\Single">
+      <UniqueIdentifier>{84a9a516-5be6-4889-9eaf-e4564eb70205}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ChatServer\Multi\Redis">
+      <UniqueIdentifier>{4ec8d83f-90d4-4a72-a84c-1b5317b9c2a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ChatServer\Single\Redis">
+      <UniqueIdentifier>{a3fd4d59-bbb1-4915-a2b5-429d6ae03c9c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="MyChatServer.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="ChatServer\Single\ChatServer.cpp">
+      <Filter>ChatServer\Single</Filter>
+    </ClCompile>
+    <ClCompile Include="NetRoot\Common\Crash.cpp">
+      <Filter>NetRoot</Filter>
+    </ClCompile>
+    <ClCompile Include="NetRoot\Common\Parser.cpp">
+      <Filter>NetRoot</Filter>
+    </ClCompile>
+    <ClCompile Include="NetRoot\Common\PDHMonitor.cpp">
+      <Filter>NetRoot</Filter>
+    </ClCompile>
+    <ClCompile Include="NetRoot\Common\Profiler.cpp">
+      <Filter>NetRoot</Filter>
+    </ClCompile>
+    <ClCompile Include="NetRoot\Common\RingBuffer.cpp">
+      <Filter>NetRoot</Filter>
+    </ClCompile>
+    <ClCompile Include="NetRoot\Common\SizedMemoryPool.cpp">
+      <Filter>NetRoot</Filter>
+    </ClCompile>
+    <ClCompile Include="NetRoot\Common\SystemLogger.cpp">
+      <Filter>NetRoot</Filter>
+    </ClCompile>
+    <ClCompile Include="NetRoot\LanClient\LanClient.cpp">
+      <Filter>NetRoot</Filter>
+    </ClCompile>
+    <ClCompile Include="NetRoot\LanServer\LanLargePacket.cpp">
+      <Filter>NetRoot</Filter>
+    </ClCompile>
+    <ClCompile Include="NetRoot\LanServer\LanPacket.cpp">
+      <Filter>NetRoot</Filter>
+    </ClCompile>
+    <ClCompile Include="NetRoot\LanServer\LanPacketSet.cpp">
+      <Filter>NetRoot</Filter>
+    </ClCompile>
+    <ClCompile Include="NetRoot\LanServer\LanPipe.cpp">
+      <Filter>NetRoot</Filter>
+    </ClCompile>
+    <ClCompile Include="NetRoot\LanServer\LanServer.cpp">
+      <Filter>NetRoot</Filter>
+    </ClCompile>
+    <ClCompile Include="NetRoot\LanServer\LanSession.cpp">
+      <Filter>NetRoot</Filter>
+    </ClCompile>
+    <ClCompile Include="NetRoot\LanServer\LanSessionArray.cpp">
+      <Filter>NetRoot</Filter>
+    </ClCompile>
+    <ClCompile Include="NetRoot\LanServer\LanSessionID.cpp">
+      <Filter>NetRoot</Filter>
+    </ClCompile>
+    <ClCompile Include="NetRoot\NetClient\NetClient.cpp">
+      <Filter>NetRoot</Filter>
+    </ClCompile>
+    <ClCompile Include="NetRoot\NetServer\NetLargePacket.cpp">
+      <Filter>NetRoot</Filter>
+    </ClCompile>
+    <ClCompile Include="NetRoot\NetServer\NetPacket.cpp">
+      <Filter>NetRoot</Filter>
+    </ClCompile>
+    <ClCompile Include="NetRoot\NetServer\NetPacketSet.cpp">
+      <Filter>NetRoot</Filter>
+    </ClCompile>
+    <ClCompile Include="NetRoot\NetServer\NetPipe.cpp">
+      <Filter>NetRoot</Filter>
+    </ClCompile>
+    <ClCompile Include="NetRoot\NetServer\NetServer.cpp">
+      <Filter>NetRoot</Filter>
+    </ClCompile>
+    <ClCompile Include="NetRoot\NetServer\NetSession.cpp">
+      <Filter>NetRoot</Filter>
+    </ClCompile>
+    <ClCompile Include="NetRoot\NetServer\NetSessionArray.cpp">
+      <Filter>NetRoot</Filter>
+    </ClCompile>
+    <ClCompile Include="NetRoot\NetServer\NetSessionID.cpp">
+      <Filter>NetRoot</Filter>
+    </ClCompile>
+    <ClCompile Include="Player\PlayerWithLock.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Player\Player.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="RedisJob.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="PacketStruct.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="MonitorProtocol.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="CommonProtocol.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="ChatServer\Single\ChatClient.h">
+      <Filter>ChatServer\Single</Filter>
+    </ClInclude>
+    <ClInclude Include="ChatServer\Single\ChatServer.h">
+      <Filter>ChatServer\Single</Filter>
+    </ClInclude>
+    <ClInclude Include="ChatServer\Single\ChatServer_CS_Stub.h">
+      <Filter>ChatServer\Single</Filter>
+    </ClInclude>
+    <ClInclude Include="ChatServer\Single\ChatServer_SC_Proxy.h">
+      <Filter>ChatServer\Single</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\Common\ChunkLockFree.h">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\Common\cpp_redis\builders\array_builder.hpp">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\Common\cpp_redis\builders\builders_factory.hpp">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\Common\cpp_redis\builders\builder_iface.hpp">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\Common\cpp_redis\builders\bulk_string_builder.hpp">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\Common\cpp_redis\builders\error_builder.hpp">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\Common\cpp_redis\builders\integer_builder.hpp">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\Common\cpp_redis\builders\reply_builder.hpp">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\Common\cpp_redis\builders\simple_string_builder.hpp">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\Common\cpp_redis\core\client.hpp">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\Common\cpp_redis\core\consumer.hpp">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\Common\cpp_redis\core\reply.hpp">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\Common\cpp_redis\core\sentinel.hpp">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\Common\cpp_redis\core\subscriber.hpp">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\Common\cpp_redis\core\types.hpp">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\Common\cpp_redis\helpers\generate_rand.hpp">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\Common\cpp_redis\helpers\variadic_template.hpp">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\Common\cpp_redis\impl\client.ipp">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\Common\cpp_redis\impl\types.hpp">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\Common\cpp_redis\misc\convert.hpp">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\Common\cpp_redis\misc\deprecated.hpp">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\Common\cpp_redis\misc\dispatch_queue.hpp">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\Common\cpp_redis\misc\error.hpp">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\Common\cpp_redis\misc\logger.hpp">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\Common\cpp_redis\misc\macro.hpp">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\Common\cpp_redis\misc\optional.hpp">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\Common\cpp_redis\network\redis_connection.hpp">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\Common\cpp_redis\network\tcp_client.hpp">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\Common\cpp_redis\network\tcp_client_iface.hpp">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\Common\Crash.h">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\Common\JobQueue.h">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\Common\Lock.h">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\Common\LockFreeEnqQueue.h">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\Common\LockFreeQueue.h">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\Common\LockFreeStack.h">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\Common\MemTLS.h">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\Common\MyList.h">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\Common\MyMultimap.h">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\Common\MyRedBlackTree.h">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\Common\Parser.h">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\Common\PDHMonitor.h">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\Common\Profiler.h">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\Common\Queue.h">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\Common\QueueWithLock.h">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\Common\RingBuffer.h">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\Common\RPCBuffer.h">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\Common\Singleton.h">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\Common\SizedMemoryPool.h">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\Common\SizedMemTLS.h">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\Common\SwapQueue.h">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\Common\SystemLogger.h">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\Common\tacopie\network\io_service.hpp">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\Common\tacopie\network\self_pipe.hpp">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\Common\tacopie\network\tcp_client.hpp">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\Common\tacopie\network\tcp_server.hpp">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\Common\tacopie\network\tcp_socket.hpp">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\Common\tacopie\utils\error.hpp">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\Common\tacopie\utils\logger.hpp">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\Common\tacopie\utils\thread_pool.hpp">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\Common\tacopie\utils\typedefs.hpp">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\LanClient\LanClient.h">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\LanServer\LanDummyPacket.h">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\LanServer\LanEnums.h">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\LanServer\LanLargePacket.h">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\LanServer\LanPacket.h">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\LanServer\LanPacketSet.h">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\LanServer\LanPipe.h">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\LanServer\LanServer.h">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\LanServer\LanSession.h">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\LanServer\LanSessionArray.h">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\LanServer\LanSessionID.h">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\LanServer\LanUser.h">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\NetClient\NetClient.h">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\NetServer\NetDummyPacket.h">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\NetServer\NetEnums.h">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\NetServer\NetLargePacket.h">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\NetServer\NetPacket.h">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\NetServer\NetPacketSet.h">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\NetServer\NetPipe.h">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\NetServer\NetServer.h">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\NetServer\NetSession.h">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\NetServer\NetSessionArray.h">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\NetServer\NetSessionID.h">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\NetServer\NetStub.h">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\NetServer\NetUser.h">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\NetServer\PipeManager.h">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\RPC\ChatDummyClient_CS_Proxy.h">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\RPC\ChatDummyClient_SC_Stub.h">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\RPC\ChatServer_CS_Stub.h">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\RPC\ChatServer_SC_Proxy.h">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\RPC\LanRPCMaker.h">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\RPC\NetRPCMaker.h">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\RPC\새 폴더\ChatDummyClient_CS_Proxy.h">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\RPC\새 폴더\ChatDummyClient_SC_Stub.h">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\RPC\새 폴더\ChatServer_CS_Stub.h">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\RPC\새 폴더\ChatServer_SC_Proxy.h">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\RPC\새 폴더\LanLoginClient_CS_Proxy.h">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\RPC\새 폴더\LanLoginClient_SC_Stub.h">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\RPC\새 폴더\LanLoginServer_CS_Stub.h">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\RPC\새 폴더\LanLoginServer_SC_Proxy.h">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\RPC\새 폴더\Net\ChatDummyClient_CS_Proxy.h">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\RPC\새 폴더\Net\ChatDummyClient_SC_Stub.h">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\RPC\새 폴더\Net\ChatServer_CS_Stub.h">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="NetRoot\RPC\새 폴더\Net\ChatServer_SC_Proxy.h">
+      <Filter>NetRoot</Filter>
+    </ClInclude>
+    <ClInclude Include="Player\PlayerMap_LoadBalanced.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Player\PlayerMapWithLock.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Player\PlayerWithLock.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Player\Player.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Player\PlayerMap.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Sector\SectorMap.h">
+      <Filter>Sector</Filter>
+    </ClInclude>
+    <ClInclude Include="Sector\SectorMapWithLock.h">
+      <Filter>Sector</Filter>
+    </ClInclude>
+    <ClInclude Include="Sector\Sector.h">
+      <Filter>Sector</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="ChatServer\Single\cpp_redis.lib">
+      <Filter>ChatServer\Single</Filter>
+    </Library>
+    <Library Include="ChatServer\Single\tacopie.lib">
+      <Filter>ChatServer\Single</Filter>
+    </Library>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Config.ini">
+      <Filter>헤더 파일</Filter>
+    </None>
+    <None Include="ChatServer\Single\cpp_redis.pdb">
+      <Filter>ChatServer\Single</Filter>
+    </None>
+    <None Include="ChatServer\Single\libmysql.dll">
+      <Filter>ChatServer\Single</Filter>
+    </None>
+    <None Include="ChatServer\Single\tacopie.pdb">
+      <Filter>ChatServer\Single</Filter>
+    </None>
+  </ItemGroup>
+</Project>
