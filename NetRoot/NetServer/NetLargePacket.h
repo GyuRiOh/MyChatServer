@@ -7,7 +7,7 @@
 #include "../Common/MemTLS.h"
 #include <vector>
 
-namespace server_baby
+namespace MyNetwork
 {
 
 	class NetLargePacket final
@@ -69,13 +69,13 @@ namespace server_baby
 		char* prevReadPos_;
 		char* writePos_;
 
-		static server_baby::MemTLS<NetLargePacket>* packetPool_;
-		friend struct server_baby::DataBlock<NetLargePacket>;
+		static MyNetwork::MemTLS<NetLargePacket>* packetPool_;
+		friend struct MyNetwork::DataBlock<NetLargePacket>;
 		friend class NetPacketSet;
 
 	};
 
-	inline bool server_baby::NetLargePacket::MoveWritePos(const int size)
+	inline bool MyNetwork::NetLargePacket::MoveWritePos(const int size)
 	{
 		if (isOkayToMoveWritePos(size))
 		{
@@ -86,13 +86,13 @@ namespace server_baby
 			return false;
 	}
 
-	inline void server_baby::NetLargePacket::ErrorQuit(const WCHAR* const message) const
+	inline void MyNetwork::NetLargePacket::ErrorQuit(const WCHAR* const message) const
 	{
 		SystemLogger::GetInstance()->LogText(L"LargePacket", LEVEL_SYSTEM, message);
 		CrashDump::Crash();
 	}
 
-	inline void server_baby::NetLargePacket::ErrorDisplay(const WCHAR* const message) const
+	inline void MyNetwork::NetLargePacket::ErrorDisplay(const WCHAR* const message) const
 	{
 		SystemLogger::GetInstance()->LogText(L"LargePacket", LEVEL_SYSTEM, message);
 	}
@@ -228,12 +228,12 @@ namespace server_baby
 		return (sum > writePos_);
 	}
 
-	inline bool server_baby::NetLargePacket::Free(NetLargePacket* const packet)
+	inline bool MyNetwork::NetLargePacket::Free(NetLargePacket* const packet)
 	{
 		return packetPool_->Free(packet);
 	}
 
-	inline NetLargePacket* server_baby::NetLargePacket::Alloc()
+	inline NetLargePacket* MyNetwork::NetLargePacket::Alloc()
 	{
 		NetLargePacket* packet = packetPool_->Alloc();
 		packet->Initialize();

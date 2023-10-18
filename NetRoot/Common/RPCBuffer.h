@@ -1,7 +1,7 @@
 #pragma once
 #include <stdlib.h>
 
-namespace server_baby
+namespace MyNetwork
 {
 	struct RPCBuffer
 	{

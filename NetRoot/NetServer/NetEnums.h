@@ -2,7 +2,7 @@
 #ifndef  __NET__ENUMS__
 #define  __NET__ENUMS__
 
-namespace server_baby
+namespace MyNetwork
 {
 
 #pragma pack(push, 1)

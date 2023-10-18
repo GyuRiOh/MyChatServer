@@ -6,7 +6,7 @@
 #include "LanEnums.h"
 #include "LanLargePacket.h"
 
-namespace server_baby
+namespace MyNetwork
 {
 	class LanDummyPacket final
 	{

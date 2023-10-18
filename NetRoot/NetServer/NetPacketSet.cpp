@@ -1,10 +1,10 @@
 #include "NetPacketSet.h"
 #include "NetEnums.h"
-using namespace server_baby;
+using namespace MyNetwork;
 
 MemTLS<NetPacketSet>* NetPacketSet::packetQPool_ = new MemTLS<NetPacketSet>(500, 1, eQUEUEITEM_POOL_CODE);
 
-int server_baby::NetPacketSet::RegisterPackets(NetLargePacket* const packet)
+int MyNetwork::NetPacketSet::RegisterPackets(NetLargePacket* const packet)
 {
     int packetCnt = 0;
     packet->PreserveReadPos();
@@ -53,7 +53,7 @@ int server_baby::NetPacketSet::RegisterPackets(NetLargePacket* const packet)
 }
 
 
-bool server_baby::NetPacketSet::Decode(const char* const data)
+bool MyNetwork::NetPacketSet::Decode(const char* const data)
 {
     //1번째 바이트 
     unsigned char* cursor = (unsigned char*)data;

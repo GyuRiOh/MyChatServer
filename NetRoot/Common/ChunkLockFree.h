@@ -9,7 +9,7 @@ constexpr unsigned long long OVERGUARD = 0xcdcdcdcdcdcdcdcd;
 constexpr unsigned long long UNDERGUARD = 0xfdfdfdfdfdfdfdfd;
 constexpr unsigned long long UNDERGUARD_AFTER_FREE = 0xfffffffffffffff;
 
-namespace server_baby
+namespace MyNetwork
 {
 	template<typename DATA>
 	struct DataBlock

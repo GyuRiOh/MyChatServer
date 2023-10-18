@@ -4,7 +4,7 @@
 
 using namespace std;
 
-namespace server_baby
+namespace MyNetwork
 {
 
 	RingBuffer::RingBuffer(void)

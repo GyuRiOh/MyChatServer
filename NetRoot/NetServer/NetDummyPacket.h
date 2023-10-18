@@ -6,7 +6,7 @@
 #include "NetEnums.h"
 #include "NetLargePacket.h"
 
-namespace server_baby
+namespace MyNetwork
 {
 	class NetDummyPacket final
 	{

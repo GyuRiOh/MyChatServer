@@ -6,7 +6,7 @@
 #include "../Common/Queue.h"
 #include "LanServer.h"
 
-namespace server_baby
+namespace MyNetwork
 {
 	class LanPacket;
 

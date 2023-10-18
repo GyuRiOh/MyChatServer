@@ -7,7 +7,7 @@
 #include "../Common/MyRedBlackTree.h"
 #include "NetStub.h"
 
-namespace server_baby
+namespace MyNetwork
 {
 	union NetSessionID;
 	
@@ -119,7 +119,7 @@ namespace server_baby
 
 		//Key : Session Unique ID
 		//value : User
-		MyRedBlackTree<INT64, server_baby::NetUser*> userMap_;
+		MyRedBlackTree<INT64, MyNetwork::NetUser*> userMap_;
 
 		const bool* runningFlag_;
 		NetPipeID pipeID_;
@@ -130,17 +130,17 @@ namespace server_baby
 		NetStub* stub_;
 	};
 
-	inline void server_baby::NetPipe::RequestEnter(const NetSessionID sessionID)
+	inline void MyNetwork::NetPipe::RequestEnter(const NetSessionID sessionID)
 	{
 		joinQ_.Enqueue(sessionID);
 	}
 
-	inline void server_baby::NetPipe::RequestEnter(NetUser* const user)
+	inline void MyNetwork::NetPipe::RequestEnter(NetUser* const user)
 	{
 		moveInQ_.Enqueue(user);
 	}
 
-	inline void server_baby::NetPipe::RequestLeave(const NetSessionID sessionID)
+	inline void MyNetwork::NetPipe::RequestLeave(const NetSessionID sessionID)
 	{
 		leaveQ_.Enqueue(sessionID);
 	}

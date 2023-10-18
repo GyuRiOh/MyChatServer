@@ -1,7 +1,7 @@
 
 #include "NetSessionArray.h"
 
-namespace server_baby
+namespace MyNetwork
 {
 
 

@@ -1,10 +1,10 @@
 #include "LanPacketSet.h"
 #include "LanEnums.h"
-using namespace server_baby;
+using namespace MyNetwork;
 
 MemTLS<LanPacketSet>* LanPacketSet::packetQPool_ = new MemTLS<LanPacketSet>(500, 1, eLAN_QUEUEITEM_POOL_CODE);
 
-int server_baby::LanPacketSet::RegisterPackets(LanLargePacket* const packet)
+int MyNetwork::LanPacketSet::RegisterPackets(LanLargePacket* const packet)
 {
     int packetCnt = 0;
     packet->PreserveReadPos();

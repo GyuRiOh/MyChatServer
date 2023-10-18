@@ -7,8 +7,8 @@
 #include<WinDef.h>
 
 //프로파일 매크로
-#define PRO_BEGIN(TagName) server_baby::ProfileBegin(TagName)
-#define PRO_END(TagName)  server_baby::ProfileEnd(TagName)
+#define PRO_BEGIN(TagName) MyNetwork::ProfileBegin(TagName)
+#define PRO_END(TagName)  MyNetwork::ProfileEnd(TagName)
 
 //크래시 매크로
 #define CRASH() do{\
@@ -17,7 +17,7 @@ int* a = nullptr;\
 } while(0)
 
 
-namespace server_baby
+namespace MyNetwork
 {
 
 	void ProfileInit();

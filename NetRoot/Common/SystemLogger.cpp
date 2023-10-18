@@ -4,9 +4,9 @@
 #include <process.h>
 #include "SystemLogger.h"
 
-using namespace server_baby;
+using namespace MyNetwork;
 
-void server_baby::SystemLogger::Initialize()
+void MyNetwork::SystemLogger::Initialize()
 {
 	isAPCThreadRunning_ = true;
 
@@ -26,7 +26,7 @@ void server_baby::SystemLogger::Initialize()
 
 }
 
-void server_baby::SystemLogger::LogText(const wchar_t* type, const int logLevel, const wchar_t* stringFormat, ...)
+void MyNetwork::SystemLogger::LogText(const wchar_t* type, const int logLevel, const wchar_t* stringFormat, ...)
 {
 
 	WCHAR timeStamp[LOG_LEN] = { 0 };
@@ -79,7 +79,7 @@ void server_baby::SystemLogger::LogText(const wchar_t* type, const int logLevel,
 
 }
 
-void server_baby::SystemLogger::LogCSV(const wchar_t* type, const int logLevel, const wchar_t* stringFormat, ...)
+void MyNetwork::SystemLogger::LogCSV(const wchar_t* type, const int logLevel, const wchar_t* stringFormat, ...)
 {
 
 	WCHAR timeStamp[LOG_LEN] = { 0 };
@@ -132,7 +132,7 @@ void server_baby::SystemLogger::LogCSV(const wchar_t* type, const int logLevel, 
 	}
 }
 
-void server_baby::SystemLogger::SaveLogText(const wchar_t* type, const int logLevel, const wchar_t* message)
+void MyNetwork::SystemLogger::SaveLogText(const wchar_t* type, const int logLevel, const wchar_t* message)
 {
 	FILE* stream = nullptr;
 	WCHAR fileName[FILENAME_LEN] = { 0 };
@@ -151,7 +151,7 @@ void server_baby::SystemLogger::SaveLogText(const wchar_t* type, const int logLe
 	fclose(stream);
 }
 
-void server_baby::SystemLogger::SaveLogCsv(const wchar_t* type, const int logLevel, const wchar_t* message)
+void MyNetwork::SystemLogger::SaveLogCsv(const wchar_t* type, const int logLevel, const wchar_t* message)
 {
 	FILE* stream = nullptr;
 	WCHAR fileName[FILENAME_LEN] = { 0 };
@@ -170,7 +170,7 @@ void server_baby::SystemLogger::SaveLogCsv(const wchar_t* type, const int logLev
 	fclose(stream);
 }
 
-void server_baby::SystemLogger::LogHex(const wchar_t* type, const int logLevel, const wchar_t* log, const int byteLen)
+void MyNetwork::SystemLogger::LogHex(const wchar_t* type, const int logLevel, const wchar_t* log, const int byteLen)
 {
 	FILE* stream = nullptr;
 	WCHAR fileName[FILENAME_LEN] = { 0 };
@@ -189,7 +189,7 @@ void server_baby::SystemLogger::LogHex(const wchar_t* type, const int logLevel, 
 
 }
 
-void server_baby::SystemLogger::Console(const wchar_t* type, const int logLevel, const wchar_t* stringFormat, ...)
+void MyNetwork::SystemLogger::Console(const wchar_t* type, const int logLevel, const wchar_t* stringFormat, ...)
 {
 	wchar_t message[LOG_LEN];
 
@@ -206,7 +206,7 @@ void server_baby::SystemLogger::Console(const wchar_t* type, const int logLevel,
 }
 
 
-void server_baby::SystemLogger::SaveAPCLogText(const wchar_t* type, const int logLevel, const wchar_t* message)
+void MyNetwork::SystemLogger::SaveAPCLogText(const wchar_t* type, const int logLevel, const wchar_t* message)
 {
 
 	APCLog* newLog = new APCLog;
@@ -223,7 +223,7 @@ void server_baby::SystemLogger::SaveAPCLogText(const wchar_t* type, const int lo
 
 }
 
-void server_baby::SystemLogger::SaveAPCLogCsv(const wchar_t* type, const int logLevel, const wchar_t* message)
+void MyNetwork::SystemLogger::SaveAPCLogCsv(const wchar_t* type, const int logLevel, const wchar_t* message)
 {
 
 	APCLog* newLog = new APCLog;
@@ -239,7 +239,7 @@ void server_baby::SystemLogger::SaveAPCLogCsv(const wchar_t* type, const int log
 	QueueUserAPC((PAPCFUNC)APCProcCSV, APCThread_.handle, (ULONG_PTR)this);
 }
 
-void server_baby::SystemLogger::SetLogPath(WCHAR* path, const wchar_t* dir)
+void MyNetwork::SystemLogger::SetLogPath(WCHAR* path, const wchar_t* dir)
 {
 	WCHAR tempPath[FILENAME_LEN] = { 0 };
 	WCHAR string[64] = { 0 };
@@ -256,7 +256,7 @@ void server_baby::SystemLogger::SetLogPath(WCHAR* path, const wchar_t* dir)
 	memmove(path, tempPath, wcslen(tempPath) * 2);
 }
 
-void server_baby::SystemLogger::SetTimeStamp(wchar_t* pathBuffer)
+void MyNetwork::SystemLogger::SetTimeStamp(wchar_t* pathBuffer)
 {
 	time_t timer;
 	struct tm t;
@@ -273,7 +273,7 @@ void server_baby::SystemLogger::SetTimeStamp(wchar_t* pathBuffer)
 
 }
 
-void server_baby::SystemLogger::CopyTimeStampForFileName(wchar_t* pathBuffer)
+void MyNetwork::SystemLogger::CopyTimeStampForFileName(wchar_t* pathBuffer)
 
 {
 	wchar_t string[64];
@@ -292,7 +292,7 @@ void server_baby::SystemLogger::CopyTimeStampForFileName(wchar_t* pathBuffer)
 
 }
 
-DWORD server_baby::SystemLogger::APCThread(LPVOID arg)
+DWORD MyNetwork::SystemLogger::APCThread(LPVOID arg)
 {
 	SystemLogger* logger = (SystemLogger*)arg;
 	while (logger->isAPCThreadRunning_)
@@ -303,21 +303,21 @@ DWORD server_baby::SystemLogger::APCThread(LPVOID arg)
 	return 0;
 }
 
-void server_baby::SystemLogger::APCProc(ULONG_PTR arg)
+void MyNetwork::SystemLogger::APCProc(ULONG_PTR arg)
 {
 	SystemLogger* logger = (SystemLogger*)arg;
 	logger->MyAPCProc();
 	return;
 }
 
-void server_baby::SystemLogger::APCProcCSV(ULONG_PTR arg)
+void MyNetwork::SystemLogger::APCProcCSV(ULONG_PTR arg)
 {
 	SystemLogger* logger = (SystemLogger*)arg;
 	logger->MyAPCProcCSV();
 	return;
 }
 
-void server_baby::SystemLogger::MyAPCProc()
+void MyNetwork::SystemLogger::MyAPCProc()
 {
 	FILE* stream = nullptr;
 	while (!apcTxt_.isEmpty())
@@ -336,7 +336,7 @@ void server_baby::SystemLogger::MyAPCProc()
 
 }
 
-void server_baby::SystemLogger::MyAPCProcCSV()
+void MyNetwork::SystemLogger::MyAPCProcCSV()
 {
 
 	FILE* stream = nullptr;

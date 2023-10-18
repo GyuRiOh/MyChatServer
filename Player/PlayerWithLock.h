@@ -5,7 +5,7 @@
 #include "../PacketStruct.h"
 #include "../NetRoot/Common/Lock.h"
 
-namespace server_baby
+namespace MyNetwork
 {
 	class PlayerWithLock
 	{
@@ -44,7 +44,7 @@ namespace server_baby
 		SectorPos oldSector_;
 		SectorPos curSector_;
 
-		static server_baby::MemTLS<PlayerWithLock>* playerPool_;
+		static MyNetwork::MemTLS<PlayerWithLock>* playerPool_;
 	};
 
 	inline int PlayerWithLock::GetUsedCount()

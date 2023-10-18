@@ -3,7 +3,7 @@
 #include "NetRoot/LanServer/LanSessionID.h"
 #include "LanLoginServer.h"
 
-namespace server_baby
+namespace MyNetwork
 {
 	class LanLoginServer_SC_Proxy
 	{

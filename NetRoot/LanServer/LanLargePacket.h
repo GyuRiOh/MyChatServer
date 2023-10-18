@@ -6,7 +6,7 @@
 #include "LanEnums.h"
 #include "../Common/MemTLS.h"
 #include <vector>
-namespace server_baby
+namespace MyNetwork
 {
 
 	class LanLargePacket final
@@ -70,14 +70,14 @@ namespace server_baby
 		long initFlag_;
 
 		static vector<char*> bufferList_;
-		static server_baby::MemTLS<LanLargePacket>* packetPool_;
+		static MyNetwork::MemTLS<LanLargePacket>* packetPool_;
 		static RTL_SRWLOCK bufferListLock_;
-		friend struct server_baby::DataBlock<LanLargePacket>;
+		friend struct MyNetwork::DataBlock<LanLargePacket>;
 		friend class LanPacketSet;
 
 	};
 
-	inline bool server_baby::LanLargePacket::MoveWritePos(const int size)
+	inline bool MyNetwork::LanLargePacket::MoveWritePos(const int size)
 	{
 		if (isOkayToMoveWritePos(size))
 		{
@@ -88,13 +88,13 @@ namespace server_baby
 			return false;
 	}
 
-	inline void server_baby::LanLargePacket::ErrorQuit(const WCHAR* const message) const
+	inline void MyNetwork::LanLargePacket::ErrorQuit(const WCHAR* const message) const
 	{
 		SystemLogger::GetInstance()->LogText(L"LargePacket", LEVEL_SYSTEM, message);
 		CrashDump::Crash();
 	}
 
-	inline void server_baby::LanLargePacket::ErrorDisplay(const WCHAR* const message) const
+	inline void MyNetwork::LanLargePacket::ErrorDisplay(const WCHAR* const message) const
 	{
 		SystemLogger::GetInstance()->LogText(L"LargePacket", LEVEL_SYSTEM, message);
 	}
@@ -233,7 +233,7 @@ namespace server_baby
 		return (sum > writePos_);
 	}
 
-	inline bool server_baby::LanLargePacket::Free(LanLargePacket* const packet)
+	inline bool MyNetwork::LanLargePacket::Free(LanLargePacket* const packet)
 	{
 		return packetPool_->Free(packet);
 	}
@@ -243,7 +243,7 @@ namespace server_baby
 		return static_cast<int>(bufferList_.size());
 	}
 
-	inline LanLargePacket* server_baby::LanLargePacket::Alloc()
+	inline LanLargePacket* MyNetwork::LanLargePacket::Alloc()
 	{
 		LanLargePacket* packet = packetPool_->Alloc();
 		packet->Initialize();

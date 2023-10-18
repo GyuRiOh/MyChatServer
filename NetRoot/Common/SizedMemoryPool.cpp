@@ -1,7 +1,7 @@
 #include <Windows.h>
 #include "SizedMemoryPool.h"
 
-using namespace server_baby;
+using namespace MyNetwork;
 using namespace std;
 
 unordered_map<DWORD, LPVOID> SizedMemoryPool::poolMap_;
@@ -174,7 +174,7 @@ bool SizedMemoryPool::Free(LPVOID pData)
 	}
 }
 
-void server_baby::SizedMemoryPool::DeleteTLS()
+void MyNetwork::SizedMemoryPool::DeleteTLS()
 {
 	SizedMemTLS<bucket1>* memtls1 = reinterpret_cast<SizedMemTLS<bucket1>*>(poolMap_[bucket1]);
 	SizedMemTLS<bucket2>* memtls2 = reinterpret_cast<SizedMemTLS<bucket2>*>(poolMap_[bucket2]);

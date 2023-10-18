@@ -8,7 +8,7 @@
 
 using namespace std;
 
-namespace server_baby
+namespace MyNetwork
 {
 
     constexpr int DATA_MAX_SIZE = 65536;

@@ -6,7 +6,7 @@
 #include "NetPacket.h"
 #include <vector>
 
-namespace server_baby
+namespace MyNetwork
 {
 	template <typename Pipe>
 	class PipeManager final

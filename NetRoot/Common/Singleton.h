@@ -5,7 +5,7 @@
 #include <Windows.h>
 #include <stdlib.h>
 
-namespace server_baby
+namespace MyNetwork
 {
 
 	template<typename DATA>

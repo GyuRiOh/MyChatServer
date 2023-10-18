@@ -1,7 +1,7 @@
 #include "LanLargePacket.h"
 #include "../Common/MemTLS.h"
 
-using namespace server_baby;
+using namespace MyNetwork;
 using namespace std;
 
 MemTLS<LanLargePacket>* LanLargePacket::packetPool_ = new MemTLS<LanLargePacket>(500, 1, eLAN_LARGE_PACKET_POOL_CODE);
@@ -9,7 +9,7 @@ vector<char*> LanLargePacket::bufferList_;
 RTL_SRWLOCK LanLargePacket::bufferListLock_;
 
 
-LanLargePacket* server_baby::LanLargePacket::CopyRemainderToNewPacket(int packetCnt)
+LanLargePacket* MyNetwork::LanLargePacket::CopyRemainderToNewPacket(int packetCnt)
 {
 	if (packetCnt < 0)
 		ErrorQuit(L"CopyRemainderToNewPacket - PacketCnt Minus");
@@ -34,7 +34,7 @@ LanLargePacket* server_baby::LanLargePacket::CopyRemainderToNewPacket(int packet
 
 }
 
-void server_baby::LanLargePacket::Initialize()
+void MyNetwork::LanLargePacket::Initialize()
 {
 	if (initFlag_ != eINIT_FLAG)
 	{

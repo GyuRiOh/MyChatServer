@@ -5,7 +5,7 @@
 #include "SectorMap.h"
 #include "../NetRoot/Common/Lock.h"
 
-namespace server_baby
+namespace MyNetwork
 {
 	template<class User>
 	class SectorMapWithLock : public SectorMap<User>

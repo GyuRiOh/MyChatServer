@@ -6,7 +6,7 @@
 #include "NetRoot/Common/Crash.h"
 #include "NetRoot/Common/SystemLogger.h"
 
-using namespace server_baby;
+using namespace MyNetwork;
 using namespace std;
 
 int main()

@@ -4,7 +4,7 @@
 #define HASH_NUM 256
 using namespace std;
 
-namespace server_baby
+namespace MyNetwork
 {
 
 	template <class User>

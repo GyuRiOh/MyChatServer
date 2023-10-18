@@ -2,7 +2,7 @@
 #ifndef  __LAN__ENUMS__
 #define  __LAN__ENUMS__
 
-namespace server_baby
+namespace MyNetwork
 {
 
 #pragma pack(push, 1)

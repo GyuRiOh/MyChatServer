@@ -5,7 +5,7 @@
 #include "ChunkLockFree.h"
 #include <vector>
 
-namespace server_baby
+namespace MyNetwork
 {
 	template<typename DATA>
 	class MemTLS

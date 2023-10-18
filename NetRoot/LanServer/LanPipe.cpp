@@ -13,13 +13,13 @@
 #include "LanPacketSet.h"
 #include "LanUser.h"
 
-using namespace server_baby;
+using namespace MyNetwork;
 
-server_baby::LanPipe::LanPipe(LanRoot* server, unsigned int framePerSecond)
+MyNetwork::LanPipe::LanPipe(LanRoot* server, unsigned int framePerSecond)
     : framePerSecond_(framePerSecond), threadHandle_(INVALID_HANDLE_VALUE), runningFlag_(nullptr), server_(server)
 {}
 
-void server_baby::LanPipe::Initialize(LanPipeID ID)
+void MyNetwork::LanPipe::Initialize(LanPipeID ID)
 {
     if (pipeID_.total_)
     {
@@ -30,7 +30,7 @@ void server_baby::LanPipe::Initialize(LanPipeID ID)
     pipeID_.total_ = ID.total_;
 }
 
-void server_baby::LanPipe::Start(const bool* const flag)
+void MyNetwork::LanPipe::Start(const bool* const flag)
 {
     SetRunningFlag(flag);
     
@@ -51,18 +51,18 @@ void server_baby::LanPipe::Start(const bool* const flag)
 
 }
 
-void server_baby::LanPipe::SetRunningFlag(const bool* const flag)
+void MyNetwork::LanPipe::SetRunningFlag(const bool* const flag)
 {
     runningFlag_ = flag;
 }
 
-unsigned int __stdcall server_baby::LanPipe::WorkerThread(LPVOID arg)
+unsigned int __stdcall MyNetwork::LanPipe::WorkerThread(LPVOID arg)
 {
     LanPipe* pipe = static_cast<LanPipe*>(arg);
     return pipe->MyWorkerProc();
 }
 
-unsigned int server_baby::LanPipe::MyWorkerProc()
+unsigned int MyNetwork::LanPipe::MyWorkerProc()
 {
     timeBeginPeriod(1); 
 
@@ -121,7 +121,7 @@ unsigned int server_baby::LanPipe::MyWorkerProc()
     return 0;
 }
 
-void server_baby::LanPipe::Join()
+void MyNetwork::LanPipe::Join()
 {
     LanSessionID ID;
     while (joinQ_.Dequeue(&ID))
@@ -137,7 +137,7 @@ void server_baby::LanPipe::Join()
     }
 }
 
-void server_baby::LanPipe::Move()
+void MyNetwork::LanPipe::Move()
 {
     LanUser* user = nullptr;
     while (moveInQ_.Dequeue(&user))
@@ -170,7 +170,7 @@ void server_baby::LanPipe::Move()
     }
 }
 
-void server_baby::LanPipe::Leave()
+void MyNetwork::LanPipe::Leave()
 {
     LanSessionID ID;
     while (leaveQ_.Dequeue(&ID))
@@ -202,14 +202,14 @@ void server_baby::LanPipe::Leave()
     }
 }
 
-void server_baby::LanPipe::MessageProc()
+void MyNetwork::LanPipe::MessageProc()
 {
     userMap_.Foreach([this](ULONG id, LanUser* user) {
         DequeueJob(user);
         });
 }
 
-void server_baby::LanPipe::UpdateProc()
+void MyNetwork::LanPipe::UpdateProc()
 {
     OnUpdate();
 
@@ -219,7 +219,7 @@ void server_baby::LanPipe::UpdateProc()
 
 }
 
-void server_baby::LanPipe::DequeueJob(LanUser* const user)
+void MyNetwork::LanPipe::DequeueJob(LanUser* const user)
 {
     for (;;)
     {
@@ -244,7 +244,7 @@ void server_baby::LanPipe::DequeueJob(LanUser* const user)
     }
 }
 
-bool server_baby::LanPipe::UnpackMsg(LanPacketSet* const msgPack)
+bool MyNetwork::LanPipe::UnpackMsg(LanPacketSet* const msgPack)
 {
     switch (msgPack->GetType())
     {

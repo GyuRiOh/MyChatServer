@@ -9,7 +9,7 @@
 #include <conio.h>
 
 using namespace std;
-using namespace server_baby;
+using namespace MyNetwork;
 
 //=========================================
 //클래스 헤더에 있는 함수들
@@ -105,7 +105,7 @@ void LanRoot::Stop(void)
 
 }
 
-void server_baby::LanRoot::ServerInitiate()
+void MyNetwork::LanRoot::ServerInitiate()
 {
     if (!PrepareWinsock())
         ErrorQuit(L"isWinSockReady : incomplete");
@@ -263,7 +263,7 @@ bool LanRoot::RunAcceptThread()
     return true;
 }
 
-bool server_baby::LanRoot::RunObserverThread()
+bool MyNetwork::LanRoot::RunObserverThread()
 {
     isObserverThreadRunning_ = true;
     //관찰자 스레드 시작
@@ -324,7 +324,7 @@ bool LanRoot::RunWorkerThread()
     return true;
 }
 
-bool server_baby::LanRoot::RunPipes()
+bool MyNetwork::LanRoot::RunPipes()
 {
     for (int i = 0; i < pipeArray_.size(); i++)
     {
@@ -335,7 +335,7 @@ bool server_baby::LanRoot::RunPipes()
 }
 
 
-bool server_baby::LanRoot::SendPacket(const LanSessionID sessionID, LanPacket* const  packet)
+bool MyNetwork::LanRoot::SendPacket(const LanSessionID sessionID, LanPacket* const  packet)
 {
     LanSession* session = FindSessionForSendPacket(sessionID);
     if (!session)
@@ -382,7 +382,7 @@ void LanRoot::AsyncSendPacket(const LanSessionID sessionID, LanPacket* const pac
         SubIOCount(session, -2);
 }
 
-void server_baby::LanRoot::AsyncSendPacket(LanSessionIDSet* const sessionIDSet, LanPacket* const packet)
+void MyNetwork::LanRoot::AsyncSendPacket(LanSessionIDSet* const sessionIDSet, LanPacket* const packet)
 {
     packet->AddRef(sessionIDSet->GetSize());
 
@@ -425,7 +425,7 @@ void server_baby::LanRoot::AsyncSendPacket(LanSessionIDSet* const sessionIDSet, 
 
 }
 
-bool server_baby::LanRoot::Disconnect(const LanSessionID sessionID)
+bool MyNetwork::LanRoot::Disconnect(const LanSessionID sessionID)
 {
 
     LanSession* session = FindSession(sessionID);
@@ -443,7 +443,7 @@ bool server_baby::LanRoot::Disconnect(const LanSessionID sessionID)
     return true;
 }
 
-void server_baby::LanRoot::DisconnectAfterLastMessage(const LanSessionID sessionID, LanPacket* const  packet)
+void MyNetwork::LanRoot::DisconnectAfterLastMessage(const LanSessionID sessionID, LanPacket* const  packet)
 {
     packet->AddRef();
 
@@ -454,7 +454,7 @@ void server_baby::LanRoot::DisconnectAfterLastMessage(const LanSessionID session
    
 }
 
-void server_baby::LanRoot::DisconnectAfterLastMessage(LanSessionIDSet* const sessionIDQueue, LanPacket* const packet)
+void MyNetwork::LanRoot::DisconnectAfterLastMessage(LanSessionIDSet* const sessionIDQueue, LanPacket* const packet)
 {
     packet->AddRef(sessionIDQueue->GetSize());
 
@@ -496,13 +496,13 @@ void server_baby::LanRoot::DisconnectAfterLastMessage(LanSessionIDSet* const ses
         (LPOVERLAPPED)packet);
 }
 
-void server_baby::LanRoot::DeletePipeUser(const LanSessionID sessionID)
+void MyNetwork::LanRoot::DeletePipeUser(const LanSessionID sessionID)
 {
     LanSession* session = FindSessionWithoutInterlock(sessionID);
     DeleteSession(session);
 }
 
-bool server_baby::LanRoot::MovePipe(const LanSessionID ID, const unsigned int pipeCode)
+bool MyNetwork::LanRoot::MovePipe(const LanSessionID ID, const unsigned int pipeCode)
 {
     LanSession* session = FindSession(ID);
     if (!session)
@@ -544,7 +544,7 @@ bool server_baby::LanRoot::MovePipe(const LanSessionID ID, const unsigned int pi
     return true;
 }
 
-bool server_baby::LanRoot::MovePipe(LanUser* const  user, const unsigned int pipeCode)
+bool MyNetwork::LanRoot::MovePipe(LanUser* const  user, const unsigned int pipeCode)
 {
     LanSession* session = FindSession(user->GetSessionID());
     if (!session)
@@ -594,19 +594,19 @@ bool server_baby::LanRoot::MovePipe(LanUser* const  user, const unsigned int pip
     return true;
 }
 
-QueueWithoutCount<LanPacketSet*>* server_baby::LanRoot::GetSessionJobQ(const LanSessionID sessionID)
+QueueWithoutCount<LanPacketSet*>* MyNetwork::LanRoot::GetSessionJobQ(const LanSessionID sessionID)
 {
     LanSession* session = FindSessionWithoutInterlock(sessionID);
     return session->jobQ_;
 }
 
-void server_baby::LanRoot::AfterPipeMoveOut(LanUser* const  user)
+void MyNetwork::LanRoot::AfterPipeMoveOut(LanUser* const  user)
 {
     LanSession* session = FindSessionWithoutInterlock(user->GetSessionID());
     session->destPipe_->RequestEnter(user);
 }
 
-void server_baby::LanRoot::AfterPipeEnter(const LanSessionID ID, LanPipe* const  thisPipe)
+void MyNetwork::LanRoot::AfterPipeEnter(const LanSessionID ID, LanPipe* const  thisPipe)
 {
     LanSession* session = FindSessionWithoutInterlock(ID);
 
@@ -621,7 +621,7 @@ void server_baby::LanRoot::AfterPipeEnter(const LanSessionID ID, LanPipe* const 
     DecrementIOCount(session);
 }
 
-bool server_baby::LanRoot::RegisterPipe(const unsigned int code, LanPipe* const pipe)
+bool MyNetwork::LanRoot::RegisterPipe(const unsigned int code, LanPipe* const pipe)
 {
     if (!code)
         ErrorQuit(L"Register Pipe - Code NULL");
@@ -743,7 +743,7 @@ void LanRoot::SendPost(LanSession* const session)
 
 }
 
-void server_baby::LanRoot::OnRecvComplete(LanSession* const session, const DWORD transferred)
+void MyNetwork::LanRoot::OnRecvComplete(LanSession* const session, const DWORD transferred)
 {
 
     if (session->isIOCanceled())
@@ -781,7 +781,7 @@ void server_baby::LanRoot::OnRecvComplete(LanSession* const session, const DWORD
     }
 }
 
-void server_baby::LanRoot::OnSendComplete(LanSession* const session)
+void MyNetwork::LanRoot::OnSendComplete(LanSession* const session)
 {
 
     if (isSendIOPending_)
@@ -827,7 +827,7 @@ DWORD __stdcall LanRoot::ObserverThread(LPVOID arg)
     return server->MyObserverProc();
 }
 
-DWORD __stdcall server_baby::LanRoot::TimeoutThread(LPVOID arg)
+DWORD __stdcall MyNetwork::LanRoot::TimeoutThread(LPVOID arg)
 {
     LanRoot* server = (LanRoot*)arg;
     return server->MyTimeoutProc();
@@ -945,7 +945,7 @@ DWORD LanRoot::MyObserverProc()
     return 0;
 }
 
-DWORD server_baby::LanRoot::MyTimeoutProc()
+DWORD MyNetwork::LanRoot::MyTimeoutProc()
 {
     while (isObserverThreadRunning_)
     {
@@ -958,7 +958,7 @@ DWORD server_baby::LanRoot::MyTimeoutProc()
 }
 
 
-void server_baby::LanRoot::PostOtherProcedures
+void MyNetwork::LanRoot::PostOtherProcedures
 (const LanSessionID sessionID,
     ULONG_PTR const key, 
     LanPacket* const packet)
@@ -1078,7 +1078,7 @@ void server_baby::LanRoot::PostOtherProcedures
 
 }
 
-void server_baby::LanRoot::SendAndDisconnectPost(LanSession* const session)
+void MyNetwork::LanRoot::SendAndDisconnectPost(LanSession* const session)
 {
     long oldSendCount = 0;
     char retval = session->SendAndDisconnectPost(&oldSendCount);
@@ -1114,7 +1114,7 @@ void server_baby::LanRoot::SendAndDisconnectPost(LanSession* const session)
     }
 }
 
-DWORD server_baby::LanRoot::MyWorkerProc()
+DWORD MyNetwork::LanRoot::MyWorkerProc()
 {
     int retval;
 
@@ -1259,7 +1259,7 @@ DWORD server_baby::LanRoot::MyWorkerProc()
 }
 
 
-void server_baby::LanRoot::SetTLSIndex(DWORD* const index)
+void MyNetwork::LanRoot::SetTLSIndex(DWORD* const index)
 {
     DWORD tempIndex = TlsAlloc();
     if (tempIndex == TLS_OUT_OF_INDEXES)
@@ -1271,7 +1271,7 @@ void server_baby::LanRoot::SetTLSIndex(DWORD* const index)
     *index = tempIndex;
 }
 
-void server_baby::LanRoot::ErrorQuit(const WCHAR* const msg)
+void MyNetwork::LanRoot::ErrorQuit(const WCHAR* const msg)
 {
 
     SystemLogger::GetInstance()->Console(L"LanServer", LEVEL_SYSTEM, msg);
@@ -1280,7 +1280,7 @@ void server_baby::LanRoot::ErrorQuit(const WCHAR* const msg)
     CrashDump::Crash();
 }
 
-void server_baby::LanRoot::ErrorQuitWithErrorCode(const WCHAR* const function)
+void MyNetwork::LanRoot::ErrorQuitWithErrorCode(const WCHAR* const function)
 {
     int errorCode = WSAGetLastError();
 
@@ -1293,13 +1293,13 @@ void server_baby::LanRoot::ErrorQuitWithErrorCode(const WCHAR* const function)
     OnError(errorCode, (WCHAR*)function);
     CrashDump::Crash();
 }
-void server_baby::LanRoot::ErrorDisplay(const WCHAR* const msg)
+void MyNetwork::LanRoot::ErrorDisplay(const WCHAR* const msg)
 {
     SystemLogger::GetInstance()->Console(L"LanServer", LEVEL_SYSTEM, msg);
     SystemLogger::GetInstance()->LogText(L"LanServer", LEVEL_SYSTEM, msg);
 }
 
-void server_baby::LanRoot::ErrorDisplayWithErrorCode(const WCHAR* const function)
+void MyNetwork::LanRoot::ErrorDisplayWithErrorCode(const WCHAR* const function)
 {
     int errorCode = WSAGetLastError();
 
@@ -1312,7 +1312,7 @@ void server_baby::LanRoot::ErrorDisplayWithErrorCode(const WCHAR* const function
     OnError(errorCode, (WCHAR*)function);
 }
 
-void server_baby::LanRoot::TLSClear()
+void MyNetwork::LanRoot::TLSClear()
 {
     LanPacket::DeleteTLS();
     LanLargePacket::DeleteTLS();
@@ -1325,7 +1325,7 @@ void server_baby::LanRoot::TLSClear()
 }
 
 
-void server_baby::LanRoot::ReleaseSession(LanSession* session)
+void MyNetwork::LanRoot::ReleaseSession(LanSession* session)
 {
     if (session->SetDeleteFlag())
         return;

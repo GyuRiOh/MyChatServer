@@ -8,7 +8,7 @@
 #include "../Common/LockFreeStack.h"
 #include <functional>
 
-namespace server_baby
+namespace MyNetwork
 {
     class NetSessionArray final
     {

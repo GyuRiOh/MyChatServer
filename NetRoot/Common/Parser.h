@@ -4,7 +4,7 @@
 #include <iostream>
 #include "Singleton.h"
 
-namespace server_baby
+namespace MyNetwork
 {
 	class Parser : public Singleton<Parser>
 	{

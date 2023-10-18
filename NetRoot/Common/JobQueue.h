@@ -5,7 +5,7 @@
 #include "LockFreeQueue.h"
 #include "QueueWithLock.h"
 
-namespace server_baby
+namespace MyNetwork
 {
 	template <typename DATA, unsigned short CODE>
 	class LockFreeJobQ

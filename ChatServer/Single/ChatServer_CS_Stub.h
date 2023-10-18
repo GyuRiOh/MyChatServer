@@ -12,7 +12,7 @@
 #include "../../NetRoot/Common/RPCBuffer.h"
 #include "../../NetRoot/NetServer/NetStub.h"
 
-namespace server_baby
+namespace MyNetwork
 {
 	class ChatServer_CS_Stub : public NetStub
 	{

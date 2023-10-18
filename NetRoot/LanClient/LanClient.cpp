@@ -3,7 +3,7 @@
 #include "LanClient.h"
 #include <process.h>
 
-server_baby::LanClient::LanClient() : serverPort_(NULL), isRunning_(false),
+MyNetwork::LanClient::LanClient() : serverPort_(NULL), isRunning_(false),
     workerThreadID_(NULL), workerThread_(INVALID_HANDLE_VALUE), sock_(INVALID_SOCKET),
     recvBuffer_(nullptr)
 {
@@ -11,9 +11,9 @@ server_baby::LanClient::LanClient() : serverPort_(NULL), isRunning_(false),
     setlocale(LC_ALL, "");   
 }
 
-server_baby::LanClient::~LanClient(){}
+MyNetwork::LanClient::~LanClient(){}
 
-void server_baby::LanClient::Start(char* serverIP, unsigned short serverPort)
+void MyNetwork::LanClient::Start(char* serverIP, unsigned short serverPort)
 {
     strcpy_s(serverIP_, serverIP);
     serverPort_ = serverPort;
@@ -57,7 +57,7 @@ void server_baby::LanClient::Start(char* serverIP, unsigned short serverPort)
     OnConnect();
 }
 
-void server_baby::LanClient::Stop()
+void MyNetwork::LanClient::Stop()
 {
     closesocket(sock_);
     isRunning_ = false;
@@ -66,7 +66,7 @@ void server_baby::LanClient::Stop()
     LogDisplay(L"Client Stopped...");
 }
 
-DWORD __stdcall server_baby::LanClient::WorkerThread(LPVOID arg)
+DWORD __stdcall MyNetwork::LanClient::WorkerThread(LPVOID arg)
 {
     LanClient* client = (LanClient*)arg;
     client->Network();
@@ -74,7 +74,7 @@ DWORD __stdcall server_baby::LanClient::WorkerThread(LPVOID arg)
     return 0;
 }
 
-void server_baby::LanClient::Network()
+void MyNetwork::LanClient::Network()
 {
     LogDisplay(L"Client Start...");
 
@@ -140,7 +140,7 @@ void server_baby::LanClient::Network()
     Stop();
 }
 
-void server_baby::LanClient::Reconnect(SOCKET oldSock)
+void MyNetwork::LanClient::Reconnect(SOCKET oldSock)
 {
     SOCKET sock = socket(AF_INET, SOCK_STREAM, 0);
     if (sock == INVALID_SOCKET)
@@ -164,7 +164,7 @@ void server_baby::LanClient::Reconnect(SOCKET oldSock)
         closesocket(sock);
 }
 
-void server_baby::LanClient::ErrorQuit(const WCHAR* msg)
+void MyNetwork::LanClient::ErrorQuit(const WCHAR* msg)
 {
 
     SystemLogger::GetInstance()->Console(L"LanClient", LEVEL_SYSTEM, msg);
@@ -173,7 +173,7 @@ void server_baby::LanClient::ErrorQuit(const WCHAR* msg)
     CrashDump::Crash();
 }
 
-void server_baby::LanClient::ErrorQuitWithErrorCode(const WCHAR* function)
+void MyNetwork::LanClient::ErrorQuitWithErrorCode(const WCHAR* function)
 {
 
     int errorCode = WSAGetLastError();
@@ -187,14 +187,14 @@ void server_baby::LanClient::ErrorQuitWithErrorCode(const WCHAR* function)
     CrashDump::Crash();
 }
 
-void server_baby::LanClient::LogDisplay(const WCHAR* msg)
+void MyNetwork::LanClient::LogDisplay(const WCHAR* msg)
 {
 
     SystemLogger::GetInstance()->Console(L"LanClient", LEVEL_SYSTEM, msg);
     SystemLogger::GetInstance()->LogText(L"LanClient", LEVEL_SYSTEM, msg);
 }
 
-void server_baby::LanClient::LogDisplayWithErrorCode(const WCHAR* function)
+void MyNetwork::LanClient::LogDisplayWithErrorCode(const WCHAR* function)
 {
 
     int errorCode = WSAGetLastError();
@@ -206,7 +206,7 @@ void server_baby::LanClient::LogDisplayWithErrorCode(const WCHAR* function)
         LEVEL_SYSTEM, L"%ws : error code - %d", function, errorCode);
 }
 
-bool server_baby::LanClient::SendPacket(LanPacket* packet)
+bool MyNetwork::LanClient::SendPacket(LanPacket* packet)
 {
 
     packet->AddRef();

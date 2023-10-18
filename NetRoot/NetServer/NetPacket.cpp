@@ -1,13 +1,13 @@
 
 #include "NetPacket.h"
 
-using namespace server_baby;
+using namespace MyNetwork;
 
 MemTLS<NetPacket>* NetPacket::packetPool_ = new MemTLS<NetPacket>(1000, 1, ePACKET_POOL_CODE);
 
 NetPacket::~NetPacket(){}
 
-bool server_baby::NetPacket::Encode()
+bool MyNetwork::NetPacket::Encode()
 {
 	if (encodeFlag_)
 		return false;

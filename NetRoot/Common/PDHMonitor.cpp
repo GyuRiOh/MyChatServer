@@ -5,7 +5,7 @@
 #include <Windows.h>
 #include <strsafe.h>
 
-server_baby::ProcessMonitor::CpuUsageForProcess::CpuUsageForProcess(HANDLE process)
+MyNetwork::ProcessMonitor::CpuUsageForProcess::CpuUsageForProcess(HANDLE process)
 {
 	if (process == INVALID_HANDLE_VALUE)
 		process_ = GetCurrentProcess();
@@ -26,7 +26,7 @@ server_baby::ProcessMonitor::CpuUsageForProcess::CpuUsageForProcess(HANDLE proce
 
 }
 
-void server_baby::ProcessMonitor::CpuUsageForProcess::Initialize(HANDLE process)
+void MyNetwork::ProcessMonitor::CpuUsageForProcess::Initialize(HANDLE process)
 {
 	if (process == INVALID_HANDLE_VALUE)
 		process_ = GetCurrentProcess();
@@ -47,7 +47,7 @@ void server_baby::ProcessMonitor::CpuUsageForProcess::Initialize(HANDLE process)
 
 }
 
-void server_baby::HardwareMonitor::CpuUsageForProcessor::Initialize(HANDLE process)
+void MyNetwork::HardwareMonitor::CpuUsageForProcessor::Initialize(HANDLE process)
 {
 	if (process == INVALID_HANDLE_VALUE)
 		process_ = GetCurrentProcess();
@@ -69,7 +69,7 @@ void server_baby::HardwareMonitor::CpuUsageForProcessor::Initialize(HANDLE proce
 }
 
 //500ms~1000ms 단위 호출이 적절함
-void server_baby::ProcessMonitor::CpuUsageForProcess::UpdateCpuTime()
+void MyNetwork::ProcessMonitor::CpuUsageForProcess::UpdateCpuTime()
 {
 	ULARGE_INTEGER kernel;
 	ULARGE_INTEGER user;
@@ -107,7 +107,7 @@ void server_baby::ProcessMonitor::CpuUsageForProcess::UpdateCpuTime()
 
 }
 
-server_baby::HardwareMonitor::CpuUsageForProcessor::CpuUsageForProcessor(HANDLE process)
+MyNetwork::HardwareMonitor::CpuUsageForProcessor::CpuUsageForProcessor(HANDLE process)
 {
 	if (process == INVALID_HANDLE_VALUE)
 		process_ = GetCurrentProcess();
@@ -127,7 +127,7 @@ server_baby::HardwareMonitor::CpuUsageForProcessor::CpuUsageForProcessor(HANDLE 
 	UpdateCpuTime();
 }
 
-void server_baby::HardwareMonitor::CpuUsageForProcessor::UpdateCpuTime()
+void MyNetwork::HardwareMonitor::CpuUsageForProcessor::UpdateCpuTime()
 {
 	ULARGE_INTEGER idle;
 	ULARGE_INTEGER kernel;
@@ -160,7 +160,7 @@ void server_baby::HardwareMonitor::CpuUsageForProcessor::UpdateCpuTime()
 
 }
 
-void server_baby::ProcessMonitor::MemoryForProcess::Initialize()
+void MyNetwork::ProcessMonitor::MemoryForProcess::Initialize()
 {
 	PdhOpenQuery(NULL, NULL, &cpuQuery_);
 	PdhAddCounter(cpuQuery_, L"\\Memory\\Available MBytes", NULL, &availableBytes_);
@@ -170,7 +170,7 @@ void server_baby::ProcessMonitor::MemoryForProcess::Initialize()
 	PdhCollectQueryData(cpuQuery_);
 }
 
-void server_baby::ProcessMonitor::MemoryForProcess::Update()
+void MyNetwork::ProcessMonitor::MemoryForProcess::Update()
 {
 	PdhCollectQueryData(cpuQuery_);
 	PdhGetFormattedCounterValue(availableBytes_, PDH_FMT_DOUBLE, NULL, &availableBytesVal_);
@@ -194,7 +194,7 @@ void server_baby::ProcessMonitor::MemoryForProcess::Update()
 	}
 }
 
-void server_baby::ProcessMonitor::MemoryForProcess::UsePDHEnumObject()
+void MyNetwork::ProcessMonitor::MemoryForProcess::UsePDHEnumObject()
 {
 	PdhEnumObjectItems(
 		NULL,

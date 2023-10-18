@@ -6,7 +6,7 @@
 #include "LanServer.h"
 #include "../Common/MyRedBlackTree.h"
 
-namespace server_baby
+namespace MyNetwork
 {
 	union LanSessionID;
 	
@@ -115,17 +115,17 @@ namespace server_baby
 		LanRoot* server_;
 	};
 
-	inline void server_baby::LanPipe::RequestEnter(const LanSessionID sessionID)
+	inline void MyNetwork::LanPipe::RequestEnter(const LanSessionID sessionID)
 	{
 		joinQ_.Enqueue(sessionID);
 	}
 
-	inline void server_baby::LanPipe::RequestEnter(LanUser* const user)
+	inline void MyNetwork::LanPipe::RequestEnter(LanUser* const user)
 	{
 		moveInQ_.Enqueue(user);
 	}
 
-	inline void server_baby::LanPipe::RequestLeave(const LanSessionID sessionID)
+	inline void MyNetwork::LanPipe::RequestLeave(const LanSessionID sessionID)
 	{
 		leaveQ_.Enqueue(sessionID);
 	}

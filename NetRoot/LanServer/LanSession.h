@@ -18,7 +18,7 @@
 
 using namespace std;
 
-namespace server_baby
+namespace MyNetwork
 {
     class LanPacketSet;
     class LanPacket;
@@ -208,17 +208,17 @@ namespace server_baby
         isSending_ = false;
     }
 
-    inline long server_baby::LanSession::GetSendQPoolCount()
+    inline long MyNetwork::LanSession::GetSendQPoolCount()
     {
         return LockFreeEnqQueue<LanPacket*, SEND_Q_CODE, eLAN_PACKET_SEND_Q_MAX_SIZE>::GetPoolCount();
     }
 
-    inline long server_baby::LanSession::GetSendQPoolCapacity()
+    inline long MyNetwork::LanSession::GetSendQPoolCapacity()
     {
         return LockFreeEnqQueue<LanPacket*, SEND_Q_CODE, eLAN_PACKET_SEND_Q_MAX_SIZE>::GetPoolCapacity();
     }
 
-    inline void server_baby::LanSession::DeleteSendQPoolTLS()
+    inline void MyNetwork::LanSession::DeleteSendQPoolTLS()
     {
         LockFreeEnqQueue<LanPacket*, SEND_Q_CODE, eLAN_PACKET_SEND_Q_MAX_SIZE>::DeleteTLS();
     }
@@ -240,7 +240,7 @@ namespace server_baby
         CancelIO();
     }
 
-    inline void server_baby::LanSession::CancelIO() const
+    inline void MyNetwork::LanSession::CancelIO() const
     {
         CancelIoEx((HANDLE)sock_, NULL);
     }

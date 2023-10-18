@@ -11,7 +11,7 @@
 //정적TLS로 바꾸기
 using namespace std;
 
-namespace server_baby
+namespace MyNetwork
 {
 	template<unsigned int SIZE>
 	class SizedMemTLS

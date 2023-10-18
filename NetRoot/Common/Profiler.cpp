@@ -11,10 +11,10 @@
 
 #pragma comment(lib,"winmm.lib")
 
-using namespace server_baby;
+using namespace MyNetwork;
 using namespace std;
 
-namespace server_baby
+namespace MyNetwork
 {
 
 	constexpr int MAX_INDEX = 128;

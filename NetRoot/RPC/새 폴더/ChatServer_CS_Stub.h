@@ -7,7 +7,7 @@
 #include "ChatServer_SC_Proxy.h"
 #include "ChatServer.h"
 
-namespace server_baby
+namespace MyNetwork
 {
 	class ChatServer_CS_Stub : public NetStub
 	{

@@ -6,7 +6,7 @@
 #include "SizedMemTLS.h"
 #include <unordered_map>
 
-namespace server_baby
+namespace MyNetwork
 {
 
 	class SizedMemoryPool : public Singleton<SizedMemoryPool>

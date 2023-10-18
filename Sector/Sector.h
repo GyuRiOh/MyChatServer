@@ -1,5 +1,5 @@
 #pragma once
-namespace server_baby
+namespace MyNetwork
 {
 	enum sector
 	{

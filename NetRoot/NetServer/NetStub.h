@@ -5,7 +5,7 @@
 #include "NetServer.h"
 using namespace std;
 
-namespace server_baby
+namespace MyNetwork
 {
 	class NetStub
 	{

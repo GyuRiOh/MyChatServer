@@ -1,4 +1,4 @@
 #include "Crash.h"
 
 
-long server_baby::CrashDump::dumpCount_ = 0;
+long MyNetwork::CrashDump::dumpCount_ = 0;

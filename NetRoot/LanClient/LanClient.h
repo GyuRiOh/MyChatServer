@@ -6,7 +6,7 @@
 #include "../LanServer/LanSession.h"
 #include "../LanServer/LanPacket.h"
 
-namespace server_baby
+namespace MyNetwork
 {
 	class LanClient
 	{

@@ -12,7 +12,7 @@
 
 using namespace std;
 
-namespace server_baby
+namespace MyNetwork
 {
     class ChatServer_SC_Proxy;
 
@@ -105,12 +105,12 @@ namespace server_baby
         return updateTPS_;
     }
 
-    inline bool server_baby::ChatServer::DisconnectAbnormalPlayer(NetSessionID ID)
+    inline bool MyNetwork::ChatServer::DisconnectAbnormalPlayer(NetSessionID ID)
     {
         return Disconnect(ID);
     }
 
-    inline bool server_baby::ChatServer::DisconnectDuplicatedPlayer(INT64 accountNum)
+    inline bool MyNetwork::ChatServer::DisconnectDuplicatedPlayer(INT64 accountNum)
     {
         NetSessionID duplicatedNetSessionID;
         if (!onlineMap_.Find(&duplicatedNetSessionID, accountNum))
@@ -124,7 +124,7 @@ namespace server_baby
         return Disconnect(duplicatedNetSessionID);
     }
 
-    inline bool server_baby::ChatServer::ReleasePlayer(NetSessionID ID)
+    inline bool MyNetwork::ChatServer::ReleasePlayer(NetSessionID ID)
     {
         Player* player = nullptr;
         if (!connectedMap_.Find(&player, ID.total_))
@@ -141,27 +141,27 @@ namespace server_baby
         return true;
     }
 
-    inline bool server_baby::ChatServer::OnConnectionRequest(const SOCKADDR_IN* const addr)
+    inline bool MyNetwork::ChatServer::OnConnectionRequest(const SOCKADDR_IN* const addr)
     {
         return true;
     }
 
-    inline void server_baby::ChatServer::OnSend(NetSessionID NetSessionID, int sendSize)
+    inline void MyNetwork::ChatServer::OnSend(NetSessionID NetSessionID, int sendSize)
     {
 
     }
 
-    inline void server_baby::ChatServer::OnWorkerThreadBegin()
+    inline void MyNetwork::ChatServer::OnWorkerThreadBegin()
     {
 
     }
 
-    inline void server_baby::ChatServer::OnWorkerThreadEnd()
+    inline void MyNetwork::ChatServer::OnWorkerThreadEnd()
     {
 
     }
 
-    inline void server_baby::ChatServer::RequireAuth(RedisJob* job)
+    inline void MyNetwork::ChatServer::RequireAuth(RedisJob* job)
     {
         jobQ_Redis_.Enqueue(job);
         SetEvent(authEvent_);

@@ -7,7 +7,7 @@
 #include "SystemLogger.h"
 #include "Parser.h"
 
-namespace server_baby
+namespace MyNetwork
 {
 	class NetRPCMaker
 	{	
@@ -144,7 +144,7 @@ namespace server_baby
 				fprintf(stream, "#include \"%s.h\"\n", serverName_);
 
 				fprintf(stream, "\n");
-				fprintf(stream, "namespace server_baby\n");
+				fprintf(stream, "namespace MyNetwork\n");
 				fprintf(stream, "{\n");
 
 				//持失切
@@ -225,7 +225,7 @@ namespace server_baby
 				fprintf(stream, "#include \"%s.h\"\n", clientName_);
 
 				fprintf(stream, "\n");
-				fprintf(stream, "namespace server_baby\n");
+				fprintf(stream, "namespace MyNetwork\n");
 				fprintf(stream, "{\n");
 
 				//持失切
@@ -314,7 +314,7 @@ namespace server_baby
 				fprintf(stream, "#include \"%s.h\"\n", serverName_);
 
 				fprintf(stream, "\n");
-				fprintf(stream, "namespace server_baby\n");
+				fprintf(stream, "namespace MyNetwork\n");
 				fprintf(stream, "{\n");
 
 				//持失切
@@ -476,7 +476,7 @@ namespace server_baby
 				fprintf(stream, "#include \"%s.h\"\n", clientName_);
 
 				fprintf(stream, "\n");
-				fprintf(stream, "namespace server_baby\n");
+				fprintf(stream, "namespace MyNetwork\n");
 				fprintf(stream, "{\n");
 
 				//持失切

@@ -3,7 +3,7 @@
 #include "PlayerMap_LoadBalanced.h"
 #include "../NetRoot/Common/Lock.h"
 
-namespace server_baby
+namespace MyNetwork
 {
 	template<class User>
 	class UserMapWithLock : protected LoadBalancedUserMap<User>

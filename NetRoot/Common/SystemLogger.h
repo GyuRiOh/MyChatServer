@@ -11,7 +11,7 @@
 #include "Singleton.h"
 #include "QueueWithLock.h"
 
-namespace server_baby
+namespace MyNetwork
 {
 	enum LogLevel
 	{

@@ -4,7 +4,7 @@
 
 #include "MemTLS.h"
 
-namespace server_baby
+namespace MyNetwork
 {
 	template<typename DATA>
 	struct ListNode

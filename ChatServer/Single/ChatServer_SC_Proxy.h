@@ -4,7 +4,7 @@
 #include "ChatServer.h"
 #include "../../CommonProtocol.h"
 
-namespace server_baby
+namespace MyNetwork
 {
 	class ChatServer_SC_Proxy
 	{

@@ -6,7 +6,7 @@
 #include "LanEnums.h"
 #include "../Common/MemTLS.h"
 
-namespace server_baby
+namespace MyNetwork
 {
 	class LanPacket final
 	{	
@@ -93,7 +93,7 @@ namespace server_baby
 		char initFlag_ = NULL;
 		long refCnt_ = 0;
 
-		static server_baby::MemTLS<LanPacket>* packetPool_;
+		static MyNetwork::MemTLS<LanPacket>* packetPool_;
 		friend class LanSession;
 	};
 
@@ -168,7 +168,7 @@ namespace server_baby
 		return size;
 	}
 
-	inline int server_baby::LanPacket::MoveBodyWritePos(const int size)
+	inline int MyNetwork::LanPacket::MoveBodyWritePos(const int size)
 	{
 		isOkayToMoveWritePos(size);
 
@@ -200,7 +200,7 @@ namespace server_baby
 		CrashDump::Crash();
 	}
 
-	inline void server_baby::LanPacket::Initialize()
+	inline void MyNetwork::LanPacket::Initialize()
 	{
 		if (initFlag_ != eINIT_FLAG)
 		{
@@ -216,19 +216,19 @@ namespace server_baby
 		refCnt_ = 1;
 	}
 
-	inline void server_baby::LanPacket::isOkayToMoveWritePos(const int size)
+	inline void MyNetwork::LanPacket::isOkayToMoveWritePos(const int size)
 	{
 		if (isFullWithWritePos(size))
 			Error(L"MoveDataWritePos : Packet is full");
 	}
 
-	inline void server_baby::LanPacket::isOkayToMoveReadPos(const int size)
+	inline void MyNetwork::LanPacket::isOkayToMoveReadPos(const int size)
 	{
 		if (isEmptyWithReadPos(size))
 			Error(L"MoveDataReadPos : Packet is Empty");
 	}
 
-	inline int server_baby::LanPacket::MoveBodyReadPos(const int size)
+	inline int MyNetwork::LanPacket::MoveBodyReadPos(const int size)
 	{
 		isOkayToMoveReadPos(size);
 
@@ -236,13 +236,13 @@ namespace server_baby
 		return size;
 	}
 
-	inline bool server_baby::LanPacket::isFullWithWritePos(const int size) const
+	inline bool MyNetwork::LanPacket::isFullWithWritePos(const int size) const
 	{
 		void* sum = writePos_ + size;
 		return (sum >= end_);
 	}
 
-	inline bool server_baby::LanPacket::isEmptyWithReadPos(const int size) const
+	inline bool MyNetwork::LanPacket::isEmptyWithReadPos(const int size) const
 	{
 		void* sum = readPos_ + size;
 		return (sum > writePos_);

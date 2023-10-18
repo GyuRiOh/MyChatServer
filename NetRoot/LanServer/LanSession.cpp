@@ -6,7 +6,7 @@ using namespace std;
 
 #define LAST_RECV_TIME_DEAD 0xffffffffffffffff
 
-namespace server_baby
+namespace MyNetwork
 {
     LanSession::LanSession() : sock_(INVALID_SOCKET), sentCount_(0),
         recvPacket_(nullptr), lastRecvTime_(LAST_RECV_TIME_DEAD), isSending_(false), IOcount_(LAN_DELETE_FLAG_BIT),
@@ -256,7 +256,7 @@ namespace server_baby
     }
 
 
-    char server_baby::LanSession::CompleteRecvCheck_PacketQ(LanPacketSet** const packetQBuf, int* const packetCount, const  DWORD transferred)
+    char MyNetwork::LanSession::CompleteRecvCheck_PacketQ(LanPacketSet** const packetQBuf, int* const packetCount, const  DWORD transferred)
     {
         lastRecvTime_ = GetTickCount64();
 
@@ -293,7 +293,7 @@ namespace server_baby
 
     }
 
-    void server_baby::LanSession::ErrorCheck(const errno_t err, const WCHAR* const msg)
+    void MyNetwork::LanSession::ErrorCheck(const errno_t err, const WCHAR* const msg)
     {
         switch (err)
         {

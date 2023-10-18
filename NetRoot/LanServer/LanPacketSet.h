@@ -10,7 +10,7 @@
 #include "LanEnums.h"
 
 
-namespace server_baby
+namespace MyNetwork
 {
     class LanPacketSet final
     {
@@ -48,7 +48,7 @@ namespace server_baby
         unsigned int readPos_;
         BYTE type_;
 
-        static server_baby::MemTLS<LanPacketSet>* packetQPool_;
+        static MyNetwork::MemTLS<LanPacketSet>* packetQPool_;
         friend class RootServer;
     };
 
@@ -112,7 +112,7 @@ namespace server_baby
         return packetQPool_->GetTotalCapacity();
     }
 
-    inline LanPacketSet* server_baby::LanPacketSet::Alloc(const LanSessionID ID, const BYTE type)
+    inline LanPacketSet* MyNetwork::LanPacketSet::Alloc(const LanSessionID ID, const BYTE type)
     {
         LanPacketSet* packetQ = packetQPool_->Alloc();
         packetQ->writePos_ = NULL;
@@ -124,7 +124,7 @@ namespace server_baby
         return packetQ;
     }
 
-    inline LanPacketSet* server_baby::LanPacketSet::Alloc(const LanSessionID ID, LanLargePacket* const original)
+    inline LanPacketSet* MyNetwork::LanPacketSet::Alloc(const LanSessionID ID, LanLargePacket* const original)
     {
         LanPacketSet* packetQ = packetQPool_->Alloc();
         packetQ->writePos_ = NULL;
@@ -136,7 +136,7 @@ namespace server_baby
         return packetQ;
     }
 
-    inline bool server_baby::LanPacketSet::Free(LanPacketSet* const packetQ)
+    inline bool MyNetwork::LanPacketSet::Free(LanPacketSet* const packetQ)
     {
         if (packetQ->originalPacket_)
             LanLargePacket::Free(packetQ->originalPacket_);

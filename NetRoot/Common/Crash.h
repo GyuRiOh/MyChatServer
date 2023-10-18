@@ -11,7 +11,7 @@
 #include "SystemLogger.h"
 #pragma comment(lib,"Dbghelp.lib")
 
-namespace server_baby
+namespace MyNetwork
 {
 	class CrashDump : public Singleton<CrashDump>
 	{

@@ -10,7 +10,7 @@
 
 constexpr int PDH_ETHERNET_MAX = 8;
 
-namespace server_baby 
+namespace MyNetwork 
 {
 	class ProcessMonitor
 	{

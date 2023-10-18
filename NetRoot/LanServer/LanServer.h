@@ -15,7 +15,7 @@
 
 using namespace std;
 
-namespace server_baby
+namespace MyNetwork
 {
     union LanPipeID;
     class LanUser;
@@ -272,31 +272,31 @@ namespace server_baby
     };
 
 
-    inline void server_baby::LanRoot::AddRecvTPS(const DWORD recvCount)
+    inline void MyNetwork::LanRoot::AddRecvTPS(const DWORD recvCount)
     {
         TPSInfo* info = GetTPS();
         info->recvTPS_ += recvCount;
     }
 
-    inline void server_baby::LanRoot::AddSendTPS(const DWORD sendCount)
+    inline void MyNetwork::LanRoot::AddSendTPS(const DWORD sendCount)
     {
         TPSInfo* info = GetTPS();
         info->sendTPS_ += sendCount;
     }
 
-    inline void server_baby::LanRoot::AddRecvIOPending(const DWORD recvIOPendingCount)
+    inline void MyNetwork::LanRoot::AddRecvIOPending(const DWORD recvIOPendingCount)
     {
         TPSInfo* info = GetTPS();
         info->recvIOPending_ += recvIOPendingCount;
     }
 
-    inline void server_baby::LanRoot::AddSendIOPending(const DWORD sendIOPendingCount)
+    inline void MyNetwork::LanRoot::AddSendIOPending(const DWORD sendIOPendingCount)
     {
         TPSInfo* info = GetTPS();
         info->sendIOPending_ += sendIOPendingCount;
     }
 
-    inline void server_baby::LanRoot::AddRecvTraffic(const DWORD transferred)
+    inline void MyNetwork::LanRoot::AddRecvTraffic(const DWORD transferred)
     {
         int headerCount = (int)(transferred / eSEGMENT_SIZE);
         int traffic = transferred + ((headerCount + 1) * eTCPIP_HEADER_SIZE);
@@ -305,7 +305,7 @@ namespace server_baby
         info->recvTraffic_ += traffic;
     }
 
-    inline void server_baby::LanRoot::AddSendTraffic(const DWORD transferred)
+    inline void MyNetwork::LanRoot::AddSendTraffic(const DWORD transferred)
     {
         int headerCount = (int)(transferred / eSEGMENT_SIZE);
         int traffic = transferred + ((headerCount + 1) * eTCPIP_HEADER_SIZE);
@@ -314,7 +314,7 @@ namespace server_baby
         info->sendTraffic_ += traffic;
     }
 
-    inline DWORD server_baby::LanRoot::GetRecvTPS()
+    inline DWORD MyNetwork::LanRoot::GetRecvTPS()
     {
         DWORD recvTPS = 0;
         for (int i = 0; i < TPSIndex_; i++)
@@ -325,7 +325,7 @@ namespace server_baby
         return recvTPS;
     }
 
-    inline DWORD server_baby::LanRoot::GetSendTPS()
+    inline DWORD MyNetwork::LanRoot::GetSendTPS()
     {
         DWORD sendTPS = 0;
         for (int i = 0; i < TPSIndex_; i++)
@@ -336,7 +336,7 @@ namespace server_baby
         return sendTPS;
     }
 
-    inline DWORD server_baby::LanRoot::GetRecvIOPending()
+    inline DWORD MyNetwork::LanRoot::GetRecvIOPending()
     {
         DWORD recvIOPending = 0;
         for (int i = 0; i < TPSIndex_; i++)
@@ -347,7 +347,7 @@ namespace server_baby
         return recvIOPending;
     }
 
-    inline DWORD server_baby::LanRoot::GetSendIOPending()
+    inline DWORD MyNetwork::LanRoot::GetSendIOPending()
     {
 
         DWORD sendIOPending = 0;
@@ -359,7 +359,7 @@ namespace server_baby
         return sendIOPending;
     }
 
-    inline DWORD server_baby::LanRoot::GetRecvTraffic()
+    inline DWORD MyNetwork::LanRoot::GetRecvTraffic()
     {
         DWORD recvTraffic = 0;
         for (int i = 0; i < TPSIndex_; i++)
@@ -370,7 +370,7 @@ namespace server_baby
         return recvTraffic;
     }
 
-    inline DWORD server_baby::LanRoot::GetSendTraffic()
+    inline DWORD MyNetwork::LanRoot::GetSendTraffic()
     {
         DWORD sendTraffic = 0;
         for (int i = 0; i < TPSIndex_; i++)
@@ -381,7 +381,7 @@ namespace server_baby
         return sendTraffic;
     }
 
-    inline void server_baby::LanRoot::ZeroTPS()
+    inline void MyNetwork::LanRoot::ZeroTPS()
     {
         for (int i = 0; i < TPSIndex_; i++)
         {
@@ -394,18 +394,18 @@ namespace server_baby
         }
     }
 
-    inline bool server_baby::LanRoot::isServerRunning()
+    inline bool MyNetwork::LanRoot::isServerRunning()
     {
         return isRunning_;
     }
 
-    inline bool server_baby::LanRoot::EnqueueJob(const LanSessionID sessionID, LanPacketSet* const job)
+    inline bool MyNetwork::LanRoot::EnqueueJob(const LanSessionID sessionID, LanPacketSet* const job)
     {
         LanSession* session = FindSessionWithoutInterlock(sessionID);
         return session->jobQ_->Enqueue(job);
     }
 
-    inline server_baby::LanRoot::TPSInfo* server_baby::LanRoot::GetTPS()
+    inline MyNetwork::LanRoot::TPSInfo* MyNetwork::LanRoot::GetTPS()
     {
         TPSInfo* tps = (TPSInfo*)TlsGetValue(TPS_TLS_);
         if (tps)
@@ -491,7 +491,7 @@ namespace server_baby
     }
 
     
-    inline server_baby::LanRoot::TPSInfo* server_baby::LanRoot::MakeTPS()
+    inline MyNetwork::LanRoot::TPSInfo* MyNetwork::LanRoot::MakeTPS()
     {
         TPSInfo* newTps = new TPSInfo();
         short tempIndex = 0;
@@ -520,7 +520,7 @@ namespace server_baby
         ZeroTPS();
     }
 
-    inline void server_baby::LanRoot::DeleteSession(LanSession* const session)
+    inline void MyNetwork::LanRoot::DeleteSession(LanSession* const session)
     {
         session->Destroy();
         onlineArray_->PushSessionIndex(session->GetTotalID());

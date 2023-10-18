@@ -5,7 +5,7 @@
 #include "../Common/MemTLS.h"
 #include "../Common/Queue.h"
 
-namespace server_baby
+namespace MyNetwork
 {
     enum LanPostKey
     {
@@ -100,7 +100,7 @@ namespace server_baby
 
     private:
         Queue<LanSessionID> queue_;
-        static server_baby::MemTLS<LanSessionIDSet>* idSetPool_;
+        static MyNetwork::MemTLS<LanSessionIDSet>* idSetPool_;
     }; 
 
 

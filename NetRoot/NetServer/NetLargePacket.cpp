@@ -1,13 +1,13 @@
 #include "NetLargePacket.h"
 #include "../Common/MemTLS.h"
 
-using namespace server_baby;
+using namespace MyNetwork;
 using namespace std;
 
 MemTLS<NetLargePacket>* NetLargePacket::packetPool_ = new MemTLS<NetLargePacket>(200, 1, eLARGE_PACKET_POOL_CODE);
 
 
-NetLargePacket* server_baby::NetLargePacket::CopyRemainderToNewPacket(const int packetCnt)
+NetLargePacket* MyNetwork::NetLargePacket::CopyRemainderToNewPacket(const int packetCnt)
 {
 	if (packetCnt < 0)
 		ErrorQuit(L"CopyRemainderToNewPacket - PacketCnt Minus");
@@ -33,7 +33,7 @@ NetLargePacket* server_baby::NetLargePacket::CopyRemainderToNewPacket(const int 
 
 }
 
-void server_baby::NetLargePacket::Initialize()
+void MyNetwork::NetLargePacket::Initialize()
 {
 
 	start_ = &data_[eBUFFER_CENTER];

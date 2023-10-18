@@ -18,7 +18,7 @@
 
 using namespace std;
 
-namespace server_baby
+namespace MyNetwork
 {
     class NetPacketSet;
     class NetPacket;
@@ -213,17 +213,17 @@ namespace server_baby
         InterlockedExchange8((CHAR*)&isSending_, false);
     }
 
-    inline long server_baby::NetSession::GetSendQPoolCount()
+    inline long MyNetwork::NetSession::GetSendQPoolCount()
     {
         return LockFreeEnqQueue<NetPacket*, SEND_Q_CODE, eNET_PACKET_SEND_Q_MAX_SIZE>::GetPoolCount();
     }
 
-    inline long server_baby::NetSession::GetSendQPoolCapacity()
+    inline long MyNetwork::NetSession::GetSendQPoolCapacity()
     {
         return LockFreeEnqQueue<NetPacket*, SEND_Q_CODE, eNET_PACKET_SEND_Q_MAX_SIZE>::GetPoolCapacity();
     }
 
-    inline void server_baby::NetSession::DeleteSendQPoolTLS()
+    inline void MyNetwork::NetSession::DeleteSendQPoolTLS()
     {
         LockFreeEnqQueue<NetPacket*, SEND_Q_CODE, eNET_PACKET_SEND_Q_MAX_SIZE>::DeleteTLS();
     }
@@ -245,7 +245,7 @@ namespace server_baby
         CancelIO();
     }
 
-    inline void server_baby::NetSession::CancelIO() const
+    inline void MyNetwork::NetSession::CancelIO() const
     {
         CancelIoEx((HANDLE)sock_, NULL);
     }

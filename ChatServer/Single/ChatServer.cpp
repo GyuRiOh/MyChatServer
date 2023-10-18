@@ -11,9 +11,9 @@
 #include <cpp_redis/cpp_redis>
 
 using namespace std;
-using namespace server_baby;
+using namespace MyNetwork;
 
-server_baby::ChatServer::ChatServer() 
+MyNetwork::ChatServer::ChatServer() 
     : updateThreadID_(NULL), isUpdateThreadRunning_(true), updateTPS_(0), updateEvent_(CreateEvent(NULL, FALSE, NULL, NULL)),
         authEvent_(CreateEvent(NULL, FALSE, NULL, NULL)), updateBlockedTime_(NULL),
         updateThread_(INVALID_HANDLE_VALUE), authThread_(INVALID_HANDLE_VALUE), authThreadID_(NULL)
@@ -60,17 +60,17 @@ server_baby::ChatServer::ChatServer()
 
 }
 
-server_baby::ChatServer::~ChatServer()
+MyNetwork::ChatServer::~ChatServer()
 {
     delete proxy_;
 }
 
-void server_baby::ChatServer::OnError(int errCode, WCHAR*)
+void MyNetwork::ChatServer::OnError(int errCode, WCHAR*)
 {
 
 }
 
-void server_baby::ChatServer::OnMonitor(const MonitoringInfo* const info)
+void MyNetwork::ChatServer::OnMonitor(const MonitoringInfo* const info)
 {
 
     HardwareMonitor::CpuUsageForProcessor::GetInstance()->UpdateCpuTime();
@@ -198,7 +198,7 @@ void server_baby::ChatServer::OnMonitor(const MonitoringInfo* const info)
 
 }
 
-DWORD __stdcall server_baby::ChatServer::UpdateThread(LPVOID arg)
+DWORD __stdcall MyNetwork::ChatServer::UpdateThread(LPVOID arg)
 {
     ChatServer* server = reinterpret_cast<ChatServer*>(arg);
     while (server->isServerCreated())
@@ -211,7 +211,7 @@ DWORD __stdcall server_baby::ChatServer::UpdateThread(LPVOID arg)
     return 0;
 }
 
-DWORD __stdcall server_baby::ChatServer::AuthThread(LPVOID arg)
+DWORD __stdcall MyNetwork::ChatServer::AuthThread(LPVOID arg)
 {
     //Redis 스레드로 활용
     WORD version = MAKEWORD(2, 2);
@@ -258,7 +258,7 @@ DWORD __stdcall server_baby::ChatServer::AuthThread(LPVOID arg)
     return 0;
 }
 
-void server_baby::ChatServer::MyLogic_PacketProc()
+void MyNetwork::ChatServer::MyLogic_PacketProc()
 {
     while (!jobQ_PacketQ_.isEmpty())
     {
@@ -270,7 +270,7 @@ void server_baby::ChatServer::MyLogic_PacketProc()
 
 }
 
-void server_baby::ChatServer::TrySendPacket_Sector(Player* player, NetPacket* packet)
+void MyNetwork::ChatServer::TrySendPacket_Sector(Player* player, NetPacket* packet)
 {
     short x = player->curSector_._xPos;
     short y = player->curSector_._yPos;
@@ -284,7 +284,7 @@ void server_baby::ChatServer::TrySendPacket_Sector(Player* player, NetPacket* pa
 
 }
 
-void server_baby::ChatServer::TrySendPacket_SectorAround(Player* player, NetPacket* packet)
+void MyNetwork::ChatServer::TrySendPacket_SectorAround(Player* player, NetPacket* packet)
 {
 
     NetSessionIDSet* idSet = NetSessionIDSet::Alloc();
@@ -299,7 +299,7 @@ void server_baby::ChatServer::TrySendPacket_SectorAround(Player* player, NetPack
 
 }
 
-void server_baby::ChatServer::GetNetSessionIDSet_Sector(Player* player, NetSessionIDSet* set)
+void MyNetwork::ChatServer::GetNetSessionIDSet_Sector(Player* player, NetSessionIDSet* set)
 {
     SectorAround sectorAround;
     sectorMap_.GetSectorAround(player, &sectorAround);

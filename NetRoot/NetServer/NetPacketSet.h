@@ -10,7 +10,7 @@
 #include "NetEnums.h"
 
 
-namespace server_baby
+namespace MyNetwork
 {
     class NetPacketSet final
     {
@@ -51,7 +51,7 @@ namespace server_baby
         unsigned int readPos_;
         BYTE type_;
 
-        static server_baby::MemTLS<NetPacketSet>* packetQPool_;
+        static MyNetwork::MemTLS<NetPacketSet>* packetQPool_;
         friend class RootServer;
     };
 
@@ -120,7 +120,7 @@ namespace server_baby
         packetQPool_->GarbageCollect();
     }
 
-    inline NetPacketSet* server_baby::NetPacketSet::Alloc(const NetSessionID ID, const BYTE type)
+    inline NetPacketSet* MyNetwork::NetPacketSet::Alloc(const NetSessionID ID, const BYTE type)
     {
         NetPacketSet* packetQ = packetQPool_->Alloc();
         packetQ->writePos_ = NULL;
@@ -132,7 +132,7 @@ namespace server_baby
         return packetQ;
     }
 
-    inline NetPacketSet* server_baby::NetPacketSet::Alloc(const NetSessionID ID, NetLargePacket* const original)
+    inline NetPacketSet* MyNetwork::NetPacketSet::Alloc(const NetSessionID ID, NetLargePacket* const original)
     {
         NetPacketSet* packetQ = packetQPool_->Alloc();
         packetQ->writePos_ = NULL;
@@ -144,7 +144,7 @@ namespace server_baby
         return packetQ;
     }
 
-    inline void server_baby::NetPacketSet::Free(NetPacketSet* packetQ)
+    inline void MyNetwork::NetPacketSet::Free(NetPacketSet* packetQ)
     {
         if (packetQ->originalPacket_)
             NetLargePacket::Free(packetQ->originalPacket_);

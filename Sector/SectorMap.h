@@ -6,7 +6,7 @@
 #include "../NetRoot/NetServer/NetSessionID.h"
 
 using namespace std;
-namespace server_baby
+namespace MyNetwork
 {
 
 	template<class User>

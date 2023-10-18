@@ -1,7 +1,7 @@
 #pragma once
 #include "NetRoot/NetServer/NetSessionID.h"
 
-namespace server_baby
+namespace MyNetwork
 {
 	struct RedisJob
 	{

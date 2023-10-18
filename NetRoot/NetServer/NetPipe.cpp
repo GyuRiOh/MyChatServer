@@ -13,15 +13,15 @@
 #include "NetPacketSet.h"
 #include "NetUser.h"
 
-using namespace server_baby;
+using namespace MyNetwork;
 
 
-server_baby::NetPipe::NetPipe(NetRoot* const server, const unsigned int framePerSecond)
+MyNetwork::NetPipe::NetPipe(NetRoot* const server, const unsigned int framePerSecond)
     : framePerSecond_(framePerSecond), stub_(nullptr),
     runningFlag_(nullptr), server_(server), stopFlag_(false), zeroUserCount_(NULL)
 {}
 
-void server_baby::NetPipe::Initialize(const NetPipeID ID)
+void MyNetwork::NetPipe::Initialize(const NetPipeID ID)
 {
     if (pipeID_.total_)
         ErrorQuit(L"Double Initialized");
@@ -29,7 +29,7 @@ void server_baby::NetPipe::Initialize(const NetPipeID ID)
     pipeID_.total_ = ID.total_;
 }
 
-void server_baby::NetPipe::Start(const bool* const flag)
+void MyNetwork::NetPipe::Start(const bool* const flag)
 {
     SetRunningFlag(flag);
 
@@ -44,24 +44,24 @@ void server_baby::NetPipe::Start(const bool* const flag)
 
 }
 
-void server_baby::NetPipe::Stop()
+void MyNetwork::NetPipe::Stop()
 {
     stopFlag_ = true;
 }
 
-void server_baby::NetPipe::SetRunningFlag(const bool* const flag)
+void MyNetwork::NetPipe::SetRunningFlag(const bool* const flag)
 {
     runningFlag_ = flag;
 }
 
-void __stdcall server_baby::NetPipe::WorkerThread(PTP_CALLBACK_INSTANCE instance, PVOID arg)
+void __stdcall MyNetwork::NetPipe::WorkerThread(PTP_CALLBACK_INSTANCE instance, PVOID arg)
 {
     NetPipe* pipe = static_cast<NetPipe*>(arg);
     unsigned int ret = pipe->MyWorkerProc();
     delete pipe;
 }
 
-unsigned int server_baby::NetPipe::MyWorkerProc()
+unsigned int MyNetwork::NetPipe::MyWorkerProc()
 {
     timeBeginPeriod(1); 
 
@@ -124,7 +124,7 @@ unsigned int server_baby::NetPipe::MyWorkerProc()
     return 0;
 }
 
-void server_baby::NetPipe::Join()
+void MyNetwork::NetPipe::Join()
 {
     NetSessionID ID;
     while (joinQ_.Dequeue(&ID))
@@ -139,7 +139,7 @@ void server_baby::NetPipe::Join()
     }
 }
 
-void server_baby::NetPipe::Move()
+void MyNetwork::NetPipe::Move()
 {
     NetUser* user = nullptr;
     while (moveInQ_.Dequeue(&user))
@@ -164,7 +164,7 @@ void server_baby::NetPipe::Move()
     }
 }
 
-void server_baby::NetPipe::Leave()
+void MyNetwork::NetPipe::Leave()
 {
     NetSessionID ID;
     while (leaveQ_.Dequeue(&ID))
@@ -186,7 +186,7 @@ void server_baby::NetPipe::Leave()
     }
 }
 
-void server_baby::NetPipe::MessageProc()
+void MyNetwork::NetPipe::MessageProc()
 {
 
     userMap_.Foreach([this](ULONG id, NetUser* user) {
@@ -195,7 +195,7 @@ void server_baby::NetPipe::MessageProc()
 
 }
 
-void server_baby::NetPipe::UpdateProc()
+void MyNetwork::NetPipe::UpdateProc()
 {
     OnUpdate();
 
@@ -205,7 +205,7 @@ void server_baby::NetPipe::UpdateProc()
 
 }
 
-void server_baby::NetPipe::DequeueJob(NetUser* const user)
+void MyNetwork::NetPipe::DequeueJob(NetUser* const user)
 {
     for (;;)
     {
@@ -235,7 +235,7 @@ void server_baby::NetPipe::DequeueJob(NetUser* const user)
     }
 }
 
-bool server_baby::NetPipe::UnpackMsg(NetPacketSet* const msgPack)
+bool MyNetwork::NetPipe::UnpackMsg(NetPacketSet* const msgPack)
 {
     switch (msgPack->GetType())
     {

@@ -6,12 +6,12 @@
 #include "Crash.h"
 
 
-void server_baby::Parser::Initialize()
+void MyNetwork::Parser::Initialize()
 {
 	LoadFile();
 }
 
-void server_baby::Parser::LoadFile(const char* fileName)
+void MyNetwork::Parser::LoadFile(const char* fileName)
 {
 	FILE* stream;
 	if (fopen_s(&stream, fileName, "r") == 0)
@@ -31,7 +31,7 @@ void server_baby::Parser::LoadFile(const char* fileName)
 
 }
 
-bool server_baby::Parser::GetValue(const char* key, int* value)
+bool MyNetwork::Parser::GetValue(const char* key, int* value)
 {
 	char* buf = buffer_;
 	char word1[128] = { 0 };
@@ -70,7 +70,7 @@ bool server_baby::Parser::GetValue(const char* key, int* value)
 	return false;
 }
 
-bool server_baby::Parser::GetString(const char* key, char* value)
+bool MyNetwork::Parser::GetString(const char* key, char* value)
 {
 
 	char* buf = buffer_;
@@ -108,7 +108,7 @@ bool server_baby::Parser::GetString(const char* key, char* value)
 }
 
 //스페이스, 탭, 엔터, 주석 처리
-bool server_baby::Parser::SkipNoneCommand(char character)
+bool MyNetwork::Parser::SkipNoneCommand(char character)
 {
 	switch (character)
 	{
@@ -128,7 +128,7 @@ bool server_baby::Parser::SkipNoneCommand(char character)
 }
 
 //다음 단어 얻기
-bool server_baby::Parser::FindNextWord(char** bufferStart, int* length)
+bool MyNetwork::Parser::FindNextWord(char** bufferStart, int* length)
 {
 	int loopCnt = 0;
 	char* cursor = *bufferStart;
@@ -151,7 +151,7 @@ bool server_baby::Parser::FindNextWord(char** bufferStart, int* length)
 }
 
 //문자열 얻기
-bool server_baby::Parser::FindStringWord(char** bufferStart, int* length)
+bool MyNetwork::Parser::FindStringWord(char** bufferStart, int* length)
 {
 	int loopCnt = 0;
 	char* cursor = *bufferStart;

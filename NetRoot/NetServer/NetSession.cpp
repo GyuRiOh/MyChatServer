@@ -6,7 +6,7 @@ using namespace std;
 
 #define LAST_RECV_TIME_DEAD 0xffffffffffffffff
 
-namespace server_baby
+namespace MyNetwork
 {
     NetSession::NetSession() : sock_(INVALID_SOCKET), sentCount_(0),
         recvPacket_(nullptr), lastRecvTime_(LAST_RECV_TIME_DEAD), isSending_(false), IOcount_(DELETE_FLAG_BIT),
@@ -257,7 +257,7 @@ namespace server_baby
     }
 
 
-    char server_baby::NetSession::CompleteRecvCheck_PacketQ(NetPacketSet** const packetQBuf, int* const packetCount, const DWORD transferred)
+    char MyNetwork::NetSession::CompleteRecvCheck_PacketQ(NetPacketSet** const packetQBuf, int* const packetCount, const DWORD transferred)
     {
         lastRecvTime_ = GetTickCount64();
 
@@ -295,7 +295,7 @@ namespace server_baby
 
     }
 
-    void server_baby::NetSession::ErrorCheck(const errno_t err, const WCHAR* const msg)
+    void MyNetwork::NetSession::ErrorCheck(const errno_t err, const WCHAR* const msg)
     {
         switch (err)
         {

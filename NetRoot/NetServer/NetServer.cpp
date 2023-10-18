@@ -11,7 +11,7 @@
 #include <conio.h>
 
 using namespace std;
-using namespace server_baby;
+using namespace MyNetwork;
 
 //=========================================
 //클래스 헤더에 있는 함수들
@@ -128,7 +128,7 @@ void NetRoot::Stop(void)
 
 }
 
-void server_baby::NetRoot::ServerInitiate()
+void MyNetwork::NetRoot::ServerInitiate()
 {
     if (!PrepareWinSock())
         ErrorQuit(L"isWinSockReady : incomplete");
@@ -286,7 +286,7 @@ bool NetRoot::RunAcceptThread()
     return true;
 }
 
-bool server_baby::NetRoot::RunObserverThread()
+bool MyNetwork::NetRoot::RunObserverThread()
 {
     isObserverThreadRunning_ = true;
     //관찰자 스레드 시작
@@ -347,7 +347,7 @@ bool NetRoot::RunWorkerThread()
     return true;
 }
 
-bool server_baby::NetRoot::RunPipes()
+bool MyNetwork::NetRoot::RunPipes()
 {
 
     auto function = [this](ULONG id, NetPipe* pipe)
@@ -363,7 +363,7 @@ bool server_baby::NetRoot::RunPipes()
 }
 
 
-bool server_baby::NetRoot::SendPacket(const NetSessionID NetSessionID, NetPacket* const packet)
+bool MyNetwork::NetRoot::SendPacket(const NetSessionID NetSessionID, NetPacket* const packet)
 {
     NetSession* session = FindSessionForSendPacket(NetSessionID);
     if (!session)
@@ -410,7 +410,7 @@ void NetRoot::AsyncSendPacket(const NetSessionID sessionID, NetPacket* const pac
         SubIOCount(session, -2);
 }
 
-void server_baby::NetRoot::AsyncSendPacket(NetSessionIDSet* const sessionIDSet, NetPacket* const packet)
+void MyNetwork::NetRoot::AsyncSendPacket(NetSessionIDSet* const sessionIDSet, NetPacket* const packet)
 {
     packet->AddRef(sessionIDSet->GetSize());
     packet->Encode();
@@ -451,7 +451,7 @@ void server_baby::NetRoot::AsyncSendPacket(NetSessionIDSet* const sessionIDSet, 
 
 }
 
-bool server_baby::NetRoot::Disconnect(const NetSessionID sessionID)
+bool MyNetwork::NetRoot::Disconnect(const NetSessionID sessionID)
 {
 
     NetSession* session = FindSession(sessionID);
@@ -468,7 +468,7 @@ bool server_baby::NetRoot::Disconnect(const NetSessionID sessionID)
     return true;
 }
 
-void server_baby::NetRoot::DisconnectAfterLastMessage(const NetSessionID sessionID, NetPacket* const packet)
+void MyNetwork::NetRoot::DisconnectAfterLastMessage(const NetSessionID sessionID, NetPacket* const packet)
 {
     packet->AddRef();
     packet->Encode();
@@ -480,7 +480,7 @@ void server_baby::NetRoot::DisconnectAfterLastMessage(const NetSessionID session
    
 }
 
-void server_baby::NetRoot::DisconnectAfterLastMessage(NetSessionIDSet* const sessionIDQueue, NetPacket* const packet)
+void MyNetwork::NetRoot::DisconnectAfterLastMessage(NetSessionIDSet* const sessionIDQueue, NetPacket* const packet)
 {
     packet->AddRef(sessionIDQueue->GetSize());
     packet->Encode();
@@ -523,13 +523,13 @@ void server_baby::NetRoot::DisconnectAfterLastMessage(NetSessionIDSet* const ses
         (LPOVERLAPPED)packet);
 }
 
-void server_baby::NetRoot::DeletePipeUser(const NetSessionID sessionID)
+void MyNetwork::NetRoot::DeletePipeUser(const NetSessionID sessionID)
 {
     NetSession* session = FindSessionWithoutInterlock(sessionID);
     DeleteSession(session);
 }
 
-bool server_baby::NetRoot::MovePipe(const NetSessionID ID, const unsigned int pipeCode)
+bool MyNetwork::NetRoot::MovePipe(const NetSessionID ID, const unsigned int pipeCode)
 {
     NetSession* session = FindSession(ID);
     if (!session)
@@ -570,7 +570,7 @@ bool server_baby::NetRoot::MovePipe(const NetSessionID ID, const unsigned int pi
     return true;
 }
 
-bool server_baby::NetRoot::MovePipe(NetUser* const user, const unsigned int pipeCode)
+bool MyNetwork::NetRoot::MovePipe(NetUser* const user, const unsigned int pipeCode)
 {
     NetSession* session = FindSession(user->GetSessionID());
     if (!session)
@@ -620,26 +620,26 @@ bool server_baby::NetRoot::MovePipe(NetUser* const user, const unsigned int pipe
     return true;
 }
 
-QueueWithoutCount<NetPacketSet*>* server_baby::NetRoot::GetPipeUserJobQ(const NetSessionID sessionID)
+QueueWithoutCount<NetPacketSet*>* MyNetwork::NetRoot::GetPipeUserJobQ(const NetSessionID sessionID)
 {
     NetSession* session = FindSessionWithoutInterlock(sessionID);
     return session->jobQ_;
 }
 
-SOCKADDR_IN server_baby::NetRoot::GetPipeUserAddress(const NetSessionID sessionID)
+SOCKADDR_IN MyNetwork::NetRoot::GetPipeUserAddress(const NetSessionID sessionID)
 {
     NetSession* session = FindSessionWithoutInterlock(sessionID);
     return session->GetAddress();
 }
 
-void server_baby::NetRoot::ForeachForSamePipe(std::function<void(ULONG, NetPipe*)> func, const unsigned short code)
+void MyNetwork::NetRoot::ForeachForSamePipe(std::function<void(ULONG, NetPipe*)> func, const unsigned short code)
 {
     AcquireSRWLockShared(&pipeLock_);
     pipeMap_.Foreach(func);
     ReleaseSRWLockShared(&pipeLock_);
 }
 
-int server_baby::NetRoot::DestroyZeroUserPipe(const unsigned short code)
+int MyNetwork::NetRoot::DestroyZeroUserPipe(const unsigned short code)
 {
     MyList<NetPipe*> pipeList;
 
@@ -681,7 +681,7 @@ int server_baby::NetRoot::DestroyZeroUserPipe(const unsigned short code)
     return size;
 }
 
-void server_baby::NetRoot::RevivePipe(const unsigned short code)
+void MyNetwork::NetRoot::RevivePipe(const unsigned short code)
 {
     auto function = [](ULONG id, NetPipe* pipe)
     {
@@ -693,13 +693,13 @@ void server_baby::NetRoot::RevivePipe(const unsigned short code)
     ReleaseSRWLockExclusive(&pipeLock_);
 }
 
-void server_baby::NetRoot::AfterPipeMoveOut(NetUser* const user)
+void MyNetwork::NetRoot::AfterPipeMoveOut(NetUser* const user)
 { 
     NetSession* session = FindSessionWithoutInterlock(user->GetSessionID());
     session->destPipe_->RequestEnter(user);
 }
 
-void server_baby::NetRoot::AfterPipeEnter(const NetSessionID ID, NetPipe* const thisPipe)
+void MyNetwork::NetRoot::AfterPipeEnter(const NetSessionID ID, NetPipe* const thisPipe)
 {
     NetSession* session = FindSessionWithoutInterlock(ID);
 
@@ -713,7 +713,7 @@ void server_baby::NetRoot::AfterPipeEnter(const NetSessionID ID, NetPipe* const 
     DecrementIOCount(session);
 }
 
-bool server_baby::NetRoot::RegisterPipe(const unsigned short code, NetPipe* const pipe)
+bool MyNetwork::NetRoot::RegisterPipe(const unsigned short code, NetPipe* const pipe)
 {
     if (!code)
         ErrorQuit(L"Register Pipe - Code NULL");
@@ -734,7 +734,7 @@ bool server_baby::NetRoot::RegisterPipe(const unsigned short code, NetPipe* cons
     return true;
 }
 
-void server_baby::NetRoot::DeletePipe(const unsigned short code, NetPipe* const pipe)
+void MyNetwork::NetRoot::DeletePipe(const unsigned short code, NetPipe* const pipe)
 {
     AcquireSRWLockExclusive(&pipeLock_);
     if (!pipeMap_.Remove(code, pipe))
@@ -744,7 +744,7 @@ void server_baby::NetRoot::DeletePipe(const unsigned short code, NetPipe* const 
     delete pipe;
 }
 
-void server_baby::NetRoot::DeleteAllPipe(const unsigned short code)
+void MyNetwork::NetRoot::DeleteAllPipe(const unsigned short code)
 {
 
     auto function = [](ULONG id, NetPipe* pipe)
@@ -880,7 +880,7 @@ void NetRoot::SendPost(NetSession* const session)
 
 }
 
-void server_baby::NetRoot::OnRecvComplete(NetSession* const session, const DWORD transferred)
+void MyNetwork::NetRoot::OnRecvComplete(NetSession* const session, const DWORD transferred)
 {
 
     if (session->isIOCanceled())
@@ -924,7 +924,7 @@ void server_baby::NetRoot::OnRecvComplete(NetSession* const session, const DWORD
     }
 }
 
-void server_baby::NetRoot::OnSendComplete(NetSession* const session)
+void MyNetwork::NetRoot::OnSendComplete(NetSession* const session)
 {
     if (isSendIOPending_)
         session->IncrementIOCount();
@@ -967,7 +967,7 @@ DWORD __stdcall NetRoot::ObserverThread(LPVOID arg)
     return server->MyObserverProc();
 }
 
-DWORD __stdcall server_baby::NetRoot::TimeoutThread(LPVOID arg)
+DWORD __stdcall MyNetwork::NetRoot::TimeoutThread(LPVOID arg)
 {
     NetRoot* server = (NetRoot*)arg;
     return server->MyTimeoutProc();
@@ -1085,7 +1085,7 @@ DWORD NetRoot::MyObserverProc()
     return 0;
 }
 
-DWORD server_baby::NetRoot::MyTimeoutProc()
+DWORD MyNetwork::NetRoot::MyTimeoutProc()
 {
 
     while (isObserverThreadRunning_)
@@ -1099,7 +1099,7 @@ DWORD server_baby::NetRoot::MyTimeoutProc()
 }
 
 
-void server_baby::NetRoot::PostOtherProcedures
+void MyNetwork::NetRoot::PostOtherProcedures
 (const NetSessionID sessionID, 
     ULONG_PTR const key, 
     NetPacket* const packet)
@@ -1226,7 +1226,7 @@ void server_baby::NetRoot::PostOtherProcedures
 
 }
 
-void server_baby::NetRoot::SendAndDisconnectPost(NetSession* const session)
+void MyNetwork::NetRoot::SendAndDisconnectPost(NetSession* const session)
 {
     long oldSendCount = 0;
     char retval = session->SendAndDisconnectPost(&oldSendCount);
@@ -1263,7 +1263,7 @@ void server_baby::NetRoot::SendAndDisconnectPost(NetSession* const session)
     };
 }
 
-DWORD server_baby::NetRoot::MyWorkerProc()
+DWORD MyNetwork::NetRoot::MyWorkerProc()
 {
     int retval;
 
@@ -1407,7 +1407,7 @@ DWORD server_baby::NetRoot::MyWorkerProc()
 }
 
 
-void server_baby::NetRoot::SetTLSIndex(DWORD* const index)
+void MyNetwork::NetRoot::SetTLSIndex(DWORD* const index)
 {
 
     DWORD tempIndex = TlsAlloc();
@@ -1420,7 +1420,7 @@ void server_baby::NetRoot::SetTLSIndex(DWORD* const index)
     *index = tempIndex;
 }
 
-void server_baby::NetRoot::ErrorQuit(const WCHAR* const msg)
+void MyNetwork::NetRoot::ErrorQuit(const WCHAR* const msg)
 {
 
     SystemLogger::GetInstance()->Console(L"NetServer", LEVEL_SYSTEM, msg);
@@ -1429,7 +1429,7 @@ void server_baby::NetRoot::ErrorQuit(const WCHAR* const msg)
     CrashDump::Crash();
 }
 
-void server_baby::NetRoot::ErrorQuitWithErrorCode(const WCHAR* const function)
+void MyNetwork::NetRoot::ErrorQuitWithErrorCode(const WCHAR* const function)
 {
     int errorCode = WSAGetLastError();
 
@@ -1442,13 +1442,13 @@ void server_baby::NetRoot::ErrorQuitWithErrorCode(const WCHAR* const function)
     OnError(errorCode, (WCHAR*)function);
     CrashDump::Crash();
 }
-void server_baby::NetRoot::ErrorDisplay(const WCHAR* const msg)
+void MyNetwork::NetRoot::ErrorDisplay(const WCHAR* const msg)
 {
     SystemLogger::GetInstance()->Console(L"NetServer", LEVEL_SYSTEM, msg);
     SystemLogger::GetInstance()->LogText(L"NetServer", LEVEL_SYSTEM, msg);
 }
 
-void server_baby::NetRoot::ErrorDisplayWithErrorCode(const WCHAR* const function)
+void MyNetwork::NetRoot::ErrorDisplayWithErrorCode(const WCHAR* const function)
 {
     int errorCode = WSAGetLastError();
 
@@ -1461,7 +1461,7 @@ void server_baby::NetRoot::ErrorDisplayWithErrorCode(const WCHAR* const function
     OnError(errorCode, (WCHAR*)function);
 }
 
-void server_baby::NetRoot::TLSClear()
+void MyNetwork::NetRoot::TLSClear()
 {
     NetPacket::DeleteTLS();
     NetLargePacket::DeleteTLS();
@@ -1478,7 +1478,7 @@ void server_baby::NetRoot::TLSClear()
 }
 
 
-void server_baby::NetRoot::ReleaseSession(NetSession* const session)
+void MyNetwork::NetRoot::ReleaseSession(NetSession* const session)
 {
     if (session->SetDeleteFlag())
         return;
@@ -1504,12 +1504,12 @@ void server_baby::NetRoot::ReleaseSession(NetSession* const session)
         DeleteSession(session);
 }
 
-void server_baby::NetRoot::StartPipe(NetPipe* const pipe)
+void MyNetwork::NetRoot::StartPipe(NetPipe* const pipe)
 {
     pipe->Start(&isRunning_);
 }
 
-bool server_baby::NetRoot::RegisterStub(NetStub* const stub)
+bool MyNetwork::NetRoot::RegisterStub(NetStub* const stub)
 {
     if (!stub_)
     {
@@ -1523,7 +1523,7 @@ bool server_baby::NetRoot::RegisterStub(NetStub* const stub)
     }
 }
 
-bool server_baby::NetRoot::PacketProc(NetPacketSet* const packetSet)
+bool MyNetwork::NetRoot::PacketProc(NetPacketSet* const packetSet)
 {
     if (!stub_)
         ErrorQuit(L"Stub Does not Exist");

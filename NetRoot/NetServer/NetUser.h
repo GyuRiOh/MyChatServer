@@ -9,7 +9,7 @@
 #include "../Common/Queue.h"
 #include "NetServer.h"
 
-namespace server_baby
+namespace MyNetwork
 {
 	class NetPacket;
 

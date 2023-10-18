@@ -4,7 +4,7 @@
 #include "NetClient.h"
 #include <process.h>
 
-server_baby::NetClient::NetClient() : serverPort_(NULL), isRunning_(false),
+MyNetwork::NetClient::NetClient() : serverPort_(NULL), isRunning_(false),
 	workerThreadID_(NULL), workerThread_(INVALID_HANDLE_VALUE), sock_(INVALID_SOCKET),
 	recvBuffer_(nullptr)
 {
@@ -12,9 +12,9 @@ server_baby::NetClient::NetClient() : serverPort_(NULL), isRunning_(false),
     setlocale(LC_ALL, "");
 }
 
-server_baby::NetClient::~NetClient(){}
+MyNetwork::NetClient::~NetClient(){}
 
-void server_baby::NetClient::Start(char* serverIP, unsigned short serverPort)
+void MyNetwork::NetClient::Start(char* serverIP, unsigned short serverPort)
 {
     strcpy_s(serverIP_, serverIP);
     serverPort_ = serverPort;
@@ -58,7 +58,7 @@ void server_baby::NetClient::Start(char* serverIP, unsigned short serverPort)
     OnConnect();
 }
 
-void server_baby::NetClient::Stop()
+void MyNetwork::NetClient::Stop()
 {
     closesocket(sock_);
     isRunning_ = false;
@@ -67,7 +67,7 @@ void server_baby::NetClient::Stop()
     LogDisplay(L"Client Stopped...");
 }
 
-DWORD __stdcall server_baby::NetClient::WorkerThread(LPVOID arg)
+DWORD __stdcall MyNetwork::NetClient::WorkerThread(LPVOID arg)
 {
     NetClient* client = (NetClient*)arg;
     client->Network();
@@ -76,7 +76,7 @@ DWORD __stdcall server_baby::NetClient::WorkerThread(LPVOID arg)
 }
 
 
-bool server_baby::NetClient::SendPacket(NetPacket* packet)
+bool MyNetwork::NetClient::SendPacket(NetPacket* packet)
 {
     
     packet->AddRef();
@@ -114,7 +114,7 @@ bool server_baby::NetClient::SendPacket(NetPacket* packet)
     return true;
 }
 
-void server_baby::NetClient::ErrorQuit(const WCHAR* msg)
+void MyNetwork::NetClient::ErrorQuit(const WCHAR* msg)
 {
     SystemLogger::GetInstance()->Console(L"NetClient", LEVEL_SYSTEM, msg);
     SystemLogger::GetInstance()->LogText(L"NetClient", LEVEL_SYSTEM, msg);
@@ -122,7 +122,7 @@ void server_baby::NetClient::ErrorQuit(const WCHAR* msg)
     CrashDump::Crash();
 }
 
-void server_baby::NetClient::ErrorQuitWithErrorCode(const WCHAR* function)
+void MyNetwork::NetClient::ErrorQuitWithErrorCode(const WCHAR* function)
 {
     int errorCode = WSAGetLastError();
 
@@ -135,14 +135,14 @@ void server_baby::NetClient::ErrorQuitWithErrorCode(const WCHAR* function)
     CrashDump::Crash();
 }
 
-void server_baby::NetClient::LogDisplay(const WCHAR* msg)
+void MyNetwork::NetClient::LogDisplay(const WCHAR* msg)
 {
     SystemLogger::GetInstance()->Console(L"NetClient", LEVEL_SYSTEM, msg);
     SystemLogger::GetInstance()->LogText(L"NetClient", LEVEL_SYSTEM, msg);
 
 }
 
-void server_baby::NetClient::LogDisplayWithErrorCode(const WCHAR* function)
+void MyNetwork::NetClient::LogDisplayWithErrorCode(const WCHAR* function)
 {
     int errorCode = WSAGetLastError();
 
@@ -154,7 +154,7 @@ void server_baby::NetClient::LogDisplayWithErrorCode(const WCHAR* function)
 
 }
 
-void server_baby::NetClient::Network()
+void MyNetwork::NetClient::Network()
 {
     LogDisplay(L"Client Start...");
 
@@ -222,7 +222,7 @@ void server_baby::NetClient::Network()
     Stop();
 }
 
-void server_baby::NetClient::Reconnect(SOCKET oldSock)
+void MyNetwork::NetClient::Reconnect(SOCKET oldSock)
 {
     SOCKET sock = socket(AF_INET, SOCK_STREAM, 0);
     if (sock == INVALID_SOCKET)

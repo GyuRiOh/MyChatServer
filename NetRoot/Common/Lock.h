@@ -2,7 +2,7 @@
 #include <Windows.h>
 
 
-namespace server_baby
+namespace MyNetwork
 {
 
 	class SRWLockObject
