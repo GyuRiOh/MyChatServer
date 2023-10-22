@@ -6,7 +6,7 @@
 #include "../NetServer/NetSession.h"
 #include "../NetServer/NetPacket.h"
 
-namespace MyNetwork
+namespace server_baby
 {
 	class NetClient
 	{

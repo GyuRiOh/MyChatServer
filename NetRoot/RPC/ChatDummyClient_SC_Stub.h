@@ -6,7 +6,7 @@
 #include "ChatDummyClient_CS_Proxy.h"
 #include "ChatDummyClient.h"
 
-namespace MyNetwork
+namespace server_baby
 {
 	class ChatDummyClient_SC_Stub
 	{

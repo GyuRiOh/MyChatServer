@@ -12,9 +12,10 @@
 /////////////////////////////////////////////////////////
 
 #include <mysql.h>
+#pragma comment (lib, "libmysql.lib")
 #define MAX_INFO_COUNT 3000
 
-namespace server_baby
+namespace MyNetwork
 {
 
 	class DBConnector

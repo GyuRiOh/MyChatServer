@@ -200,10 +200,12 @@ namespace MyNetwork
 
     char LanSession::SendAndDisconnectPost(long* const oldSendCount)
     {
-        //보내고 끊기 다시만들기
         Disconnect();
 
-        while (!isSendFlagFalse()) { };
+        while (!isSendFlagFalse()) {
+            if (sendQ_.isEmpty())
+                return LAN_SEND_FAILURE_SENDQ_EMPTY;
+        };
 
         isIOCanceled_ = true;
 

@@ -19,7 +19,8 @@ namespace MyNetwork
 			const unsigned short code, 
 			const unsigned int framePerSecond, 
 			const bool autoManage = false) 
-			: pipeCount_(NULL), server_(server), framePerSec_(framePerSecond), code_(code), maxPipeUser_(maxPipeUser*0.7),
+			: pipeCount_(NULL), server_(server), 
+			framePerSec_(framePerSecond), code_(code), maxPipeUser_(maxPipeUser*0.7),
 			autoManage_(autoManage), threadHandle_(INVALID_HANDLE_VALUE), maxPipeCount_(maxPipeCount)
 		{}
 

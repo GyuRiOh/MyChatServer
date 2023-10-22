@@ -3,7 +3,7 @@
 #include "NetRoot/NetServer/NetSessionID.h"
 #include "ChatServer.h"
 
-namespace MyNetwork
+namespace server_baby
 {
 	class ChatServer_SC_Proxy
 	{

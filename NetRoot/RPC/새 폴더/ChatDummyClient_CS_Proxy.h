@@ -2,7 +2,7 @@
 #include "NetRoot/NetServer/NetPacket.h"
 #include "ChatDummyClient.h"
 
-namespace MyNetwork
+namespace server_baby
 {
 	class ChatDummyClient_CS_Proxy
 	{

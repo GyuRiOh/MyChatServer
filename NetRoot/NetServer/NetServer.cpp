@@ -107,14 +107,8 @@ void NetRoot::Stop(void)
     Sleep(5000);
     isObserverThreadRunning_ = false;
 
-
-    auto function = [](ULONG id, NetPipe* pipe)
-    {
-        pipe->Stop();
-    };
-
     AcquireSRWLockExclusive(&pipeLock_);
-    pipeMap_.Foreach(function);
+    pipeMap_.Foreach([](ULONG id, NetPipe* pipe){ pipe->Stop();});
     pipeMap_.Clear(); 
     ReleaseSRWLockExclusive(&pipeLock_);
 
@@ -349,14 +343,8 @@ bool NetRoot::RunWorkerThread()
 
 bool MyNetwork::NetRoot::RunPipes()
 {
-
-    auto function = [this](ULONG id, NetPipe* pipe)
-    {
-        pipe->Start(&isRunning_);
-    };
-
     AcquireSRWLockShared(&pipeLock_);
-    pipeMap_.Foreach(function);
+    pipeMap_.Foreach([this](ULONG id, NetPipe* pipe) { pipe->Start(&isRunning_);});
     ReleaseSRWLockShared(&pipeLock_);
 
     return true;
@@ -643,19 +631,16 @@ int MyNetwork::NetRoot::DestroyZeroUserPipe(const unsigned short code)
 {
     MyList<NetPipe*> pipeList;
 
-    auto function = [&pipeList](ULONG id, NetPipe* pipe)
-    {
-        if (pipe->GetUserSize() == 0)
-            pipe->AddZeroUserCount();
-        else
-            pipe->InitZeroUserCount();
-
-        if (pipe->GetZeroUserCount() > 10 && pipe->GetUserSize() == 0)
-            pipeList.Push_Back(pipe);
-    };
-
     AcquireSRWLockExclusive(&pipeLock_);
-    pipeMap_.ForeachForSameKey(function, code);
+    pipeMap_.ForeachForSameKey([&pipeList](ULONG id, NetPipe* pipe)
+        {
+            if (pipe->GetUserSize() == 0)
+            pipe->AddZeroUserCount();
+            else
+                pipe->InitZeroUserCount();
+
+    if (pipe->GetZeroUserCount() > 10 && pipe->GetUserSize() == 0)
+        pipeList.Push_Back(pipe); }, code);
 
     auto iter = pipeList.begin();
     if (iter == pipeList.end())
@@ -683,13 +668,8 @@ int MyNetwork::NetRoot::DestroyZeroUserPipe(const unsigned short code)
 
 void MyNetwork::NetRoot::RevivePipe(const unsigned short code)
 {
-    auto function = [](ULONG id, NetPipe* pipe)
-    {
-        pipe->InitZeroUserCount();
-    };
-
     AcquireSRWLockExclusive(&pipeLock_);
-    pipeMap_.ForeachForSameKey(function, code);
+    pipeMap_.ForeachForSameKey([](ULONG id, NetPipe* pipe) {pipe->InitZeroUserCount();}, code);
     ReleaseSRWLockExclusive(&pipeLock_);
 }
 
@@ -747,13 +727,8 @@ void MyNetwork::NetRoot::DeletePipe(const unsigned short code, NetPipe* const pi
 void MyNetwork::NetRoot::DeleteAllPipe(const unsigned short code)
 {
 
-    auto function = [](ULONG id, NetPipe* pipe)
-    {
-        delete pipe;
-    };
-
     AcquireSRWLockExclusive(&pipeLock_);
-    pipeMap_.RemoveAllForSameKey(function, code);
+    pipeMap_.RemoveAllForSameKey([](ULONG id, NetPipe* pipe) { delete pipe;}, code);
     AcquireSRWLockExclusive(&pipeLock_);
 
 }
@@ -769,9 +744,11 @@ NetPipe* NetRoot::FindPipe_LoadBalanced(const unsigned int pipeCode)
         return retPipe;
     }
 
-    auto function = [&retPipe](unsigned int code, NetPipe* const pipe)
-    {
-        if (pipe->GetZeroUserCount() > 3)
+    AcquireSRWLockShared(&pipeLock_);
+    pipeMap_.ForeachForSameKey(
+        [&retPipe](unsigned int code, NetPipe* const pipe)
+        {
+            if (pipe->GetZeroUserCount() > 3)
             return;
 
         if (!retPipe)
@@ -781,13 +758,9 @@ NetPipe* NetRoot::FindPipe_LoadBalanced(const unsigned int pipeCode)
         }
 
         if (pipe->GetUserSize() < retPipe->GetUserSize())
-        {
             retPipe = pipe;
-        }
-    };
 
-    AcquireSRWLockShared(&pipeLock_);
-    pipeMap_.ForeachForSameKey(function, pipeCode);
+        }, pipeCode);
 
     if (retPipe == nullptr)
     {

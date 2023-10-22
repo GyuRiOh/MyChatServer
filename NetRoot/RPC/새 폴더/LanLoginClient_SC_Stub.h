@@ -6,7 +6,7 @@
 #include "LanLoginClient_CS_Proxy.h"
 #include "LanLoginClient.h"
 
-namespace MyNetwork
+namespace server_baby
 {
 	class LanLoginClient_SC_Stub
 	{

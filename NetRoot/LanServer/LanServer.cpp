@@ -644,21 +644,18 @@ LanPipe* LanRoot::FindPipe_LoadBalanced(const unsigned int pipeCode)
 
     LanPipe* retPipe = nullptr;
 
-    auto function = [&retPipe](unsigned int code, LanPipe* pipe)
-    {
-        if (!retPipe)
+    pipeMap_.ForeachForSameKey(
+        [&retPipe](unsigned int code, LanPipe* pipe)
         {
-            retPipe = pipe;
-            return;
-        }
+            if (!retPipe)
+            {
+                retPipe = pipe;
+                return;
+            }
 
         if (pipe->GetUserSize() < retPipe->GetUserSize())
-        {
             retPipe = pipe;
-        }
-    };
-
-    pipeMap_.ForeachForSameKey(function, pipeCode);
+        }, pipeCode);
 
     return retPipe;
 }

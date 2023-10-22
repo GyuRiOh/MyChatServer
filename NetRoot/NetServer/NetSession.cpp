@@ -205,7 +205,10 @@ namespace MyNetwork
     {
         Disconnect();
      
-        while (!isSendFlagFalse()) { };
+        while (!isSendFlagFalse()) {
+            if (sendQ_.isEmpty())
+                return SEND_FAILURE_SENDQ_EMPTY;
+        };
 
         *oldSendCount = sentCount_;
         FreeSentPacket();

@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <strsafe.h>
 
-server_baby::DBConnector::DBConnector(const WCHAR* szDBIP, const WCHAR* szUser, const WCHAR* szPassword, const WCHAR* szDBName, const int iDBPort)
+MyNetwork::DBConnector::DBConnector(const WCHAR* szDBIP, const WCHAR* szUser, const WCHAR* szPassword, const WCHAR* szDBName, const int iDBPort)
     :  DBPort_(NULL), infoArrayIndex_(NULL), TLSIndex_(NULL)
 {
     wcscpy_s(DBIP_, szDBIP);
@@ -18,7 +18,7 @@ server_baby::DBConnector::DBConnector(const WCHAR* szDBIP, const WCHAR* szUser, 
     SetTLSIndex(&TLSIndex_);
 }
 
-server_baby::DBConnector::~DBConnector()
+MyNetwork::DBConnector::~DBConnector()
 {
     for (int i = 0; i < infoArrayIndex_; i++)
     {
@@ -29,7 +29,7 @@ server_baby::DBConnector::~DBConnector()
     TlsFree(TLSIndex_);
 }
 
-bool server_baby::DBConnector::Connect(void)
+bool MyNetwork::DBConnector::Connect(void)
 {
     char DBIP[16] = { 0 };
     char DBUser[64] = { 0 };
@@ -65,7 +65,7 @@ bool server_baby::DBConnector::Connect(void)
         return true;
 }
 
-bool server_baby::DBConnector::Disconnect(void)
+bool MyNetwork::DBConnector::Disconnect(void)
 {
     for (int i = 0; i < infoArrayIndex_; i++)
     {
@@ -75,7 +75,7 @@ bool server_baby::DBConnector::Disconnect(void)
     return true;
 }
 
-bool server_baby::DBConnector::Query(const WCHAR* stringFormat, ...)
+bool MyNetwork::DBConnector::Query(const WCHAR* stringFormat, ...)
 {
     ConnectorInfo* info = GetTLSInfo();
 
@@ -110,7 +110,7 @@ bool server_baby::DBConnector::Query(const WCHAR* stringFormat, ...)
     return true;
 }
 
-bool server_baby::DBConnector::Query_Save(const WCHAR* stringFormat, ...)
+bool MyNetwork::DBConnector::Query_Save(const WCHAR* stringFormat, ...)
 {
     ConnectorInfo* info = GetTLSInfo();
 
@@ -151,7 +151,7 @@ bool server_baby::DBConnector::Query_Save(const WCHAR* stringFormat, ...)
     return true;
 }
 
-MYSQL_ROW server_baby::DBConnector::FetchRow(void)
+MYSQL_ROW MyNetwork::DBConnector::FetchRow(void)
 {
     ConnectorInfo* info = GetTLSInfo();
     if(info->SQLResult_)
@@ -159,25 +159,25 @@ MYSQL_ROW server_baby::DBConnector::FetchRow(void)
     return nullptr;
 }
 
-void server_baby::DBConnector::FreeResult(void)
+void MyNetwork::DBConnector::FreeResult(void)
 {
     ConnectorInfo* info = GetTLSInfo();
     mysql_free_result(info->SQLResult_);
 }
 
-int server_baby::DBConnector::GetLastError(void)
+int MyNetwork::DBConnector::GetLastError(void)
 {
     ConnectorInfo* info = GetTLSInfo();
     return info->lastError_;
 }
 
-WCHAR* server_baby::DBConnector::GetLastErrorMsg(void)
+WCHAR* MyNetwork::DBConnector::GetLastErrorMsg(void)
 {
     ConnectorInfo* info = GetTLSInfo();
     return info->lastErrorMsg_;
 };
 
-void server_baby::DBConnector::SaveLastError(void)
+void MyNetwork::DBConnector::SaveLastError(void)
 {
     ConnectorInfo* info = GetTLSInfo();
     char errorCode[128] = { 0 };
@@ -189,7 +189,7 @@ void server_baby::DBConnector::SaveLastError(void)
     SystemLogger::GetInstance()->LogText(L"DBConnector", LEVEL_ERROR, L"Last Error : %s", info->lastErrorMsg_);
 }
 
-void server_baby::DBConnector::SetTLSIndex(DWORD* index)
+void MyNetwork::DBConnector::SetTLSIndex(DWORD* index)
 {
     DWORD tempIndex = TlsAlloc();
     if (tempIndex == TLS_OUT_OF_INDEXES)
@@ -202,7 +202,7 @@ void server_baby::DBConnector::SetTLSIndex(DWORD* index)
     *index = tempIndex;
 }
 
-void server_baby::DBConnector::SetTLSInfo(ConnectorInfo* info)
+void MyNetwork::DBConnector::SetTLSInfo(ConnectorInfo* info)
 {
     BOOL retval = TlsSetValue(TLSIndex_, info);
 
@@ -213,7 +213,7 @@ void server_baby::DBConnector::SetTLSInfo(ConnectorInfo* info)
     }
 }
 
-server_baby::DBConnector::ConnectorInfo* server_baby::DBConnector::GetTLSInfo()
+MyNetwork::DBConnector::ConnectorInfo* MyNetwork::DBConnector::GetTLSInfo()
 {
     ConnectorInfo* info = (ConnectorInfo*)TlsGetValue(TLSIndex_);
     if (info != nullptr)

@@ -2,7 +2,7 @@
 #include "NetRoot/LanServer/LanPacket.h"
 #include "LanLoginClient.h"
 
-namespace MyNetwork
+namespace server_baby
 {
 	class LanLoginClient_CS_Proxy
 	{
